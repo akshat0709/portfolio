@@ -3,17 +3,28 @@ import React from "react";
 interface DoodleProps {
   className?: string;
   accent?: string;
+  title?: string;
+  decorative?: boolean;
 }
 
-export function TrainDoodle({ className = "w-28 h-20", accent = "#FF4336" }: DoodleProps) {
+export function TrainDoodle({
+  className = "w-28 h-20",
+  accent = "#FF4336",
+  title,
+  decorative = true,
+}: DoodleProps) {
   return (
     <svg
       viewBox="0 0 150 100"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
-      aria-label="Hand-drawn locomotive train on tracks doodle"
+      aria-hidden={decorative && !title ? "true" : undefined}
+      role={title ? "img" : undefined}
+      aria-label={title}
+      focusable="false"
     >
+      {title && <title>{title}</title>}
       {/* Locomotive Cabin Body */}
       <path
         d="M20 74 V30 C20 28 22 26 25 26 H88 V42 H114 C120 42 126 48 128 54 L132 74 H20 Z"

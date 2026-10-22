@@ -22,7 +22,7 @@ function getProjectDoodle(doodle: Project["doodle"]) {
 
 export function ProjectsView() {
   return (
-    <main className="min-h-screen pt-28 pb-20 selection:bg-sunny">
+    <main id="main-content" className="min-h-screen pt-28 pb-20 selection:bg-sunny">
       <div className="max-w-5xl mx-auto px-4 sm:px-6">
         {/* Navigation Breadcrumb */}
         <div className="mb-8">

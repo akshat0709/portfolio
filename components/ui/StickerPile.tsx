@@ -95,6 +95,9 @@ export function StickerPile() {
   useEffect(() => {
     const media = window.matchMedia("(prefers-reduced-motion: reduce)");
     setReducedMotion(media.matches);
+    const listener = (e: MediaQueryListEvent) => setReducedMotion(e.matches);
+    media.addEventListener("change", listener);
+    return () => media.removeEventListener("change", listener);
   }, []);
 
   const bringToFront = (id: string) => {
@@ -112,22 +115,28 @@ export function StickerPile() {
   return (
     <div className="relative w-full border-2 border-ink dark:border-cream bg-white dark:bg-[#1E1E1E] shadow-hard dark:shadow-hard-dark p-6 overflow-hidden">
       {/* Header bar of the sticker box */}
-      <div className="flex items-center justify-between pb-4 border-b-2 border-ink dark:border-[#333333] mb-4">
+      <div className="flex flex-wrap items-center justify-between pb-4 border-b-2 border-ink dark:border-[#333333] mb-4 gap-2">
         <div className="flex items-center gap-2">
           <span className="w-3 h-3 rounded-full bg-tomato border border-ink" />
           <span className="w-3 h-3 rounded-full bg-sunny border border-ink" />
           <span className="w-3 h-3 rounded-full bg-teal border border-ink" />
-          <span className="font-mono text-xs font-bold text-ink dark:text-cream ml-2">
-            Interactive Sticker Pile (Try dragging)
+          <span className="font-mono text-xs font-bold text-ink dark:text-cream ml-1">
+            Interactive Sticker Pile
           </span>
         </div>
-        <button
-          onClick={handleReset}
-          className="font-mono text-xs font-bold text-ink dark:text-cream underline hover:text-tomato transition-colors cursor-pointer"
-          data-cursor-label="reset"
-        >
-          Reset pile
-        </button>
+        <div className="flex items-center gap-3">
+          <span className="font-mono text-xs text-ink/70 dark:text-cream/70 hidden sm:inline">
+            Tab + Enter to cycle
+          </span>
+          <button
+            type="button"
+            onClick={handleReset}
+            className="font-mono text-xs font-bold text-ink dark:text-cream underline hover:text-tomato transition-colors cursor-pointer"
+            data-cursor-label="reset"
+          >
+            Reset pile
+          </button>
+        </div>
       </div>
 
       {/* Draggable Playground area */}
@@ -136,7 +145,7 @@ export function StickerPile() {
         className="relative w-full h-[360px] sm:h-[380px] bg-cream dark:bg-[#151515] border-2 border-dashed border-ink/40 dark:border-cream/30 overflow-hidden select-none"
       >
         <p className="absolute bottom-3 right-4 font-mono text-xs text-ink/70 dark:text-cream/70 pointer-events-none tracking-wide">
-          Grab and toss stickers freely
+          {reducedMotion ? "Keyboard-operable: Tab & press Enter" : "Grab and toss stickers freely"}
         </p>
 
         {initialStickers.map((sticker) => {
@@ -144,8 +153,9 @@ export function StickerPile() {
           return (
             <motion.div
               key={sticker.id}
-              role="region"
-              aria-label={`Interactive draggable sticker: ${sticker.title}`}
+              tabIndex={0}
+              role="button"
+              aria-label={`Sticker: ${sticker.title} - ${sticker.subtitle}. Press Enter or Space to bring to front.`}
               drag={!reducedMotion}
               dragConstraints={{
                 top: -10,
@@ -160,12 +170,18 @@ export function StickerPile() {
                 cursor: "grabbing",
               }}
               onPointerDown={() => bringToFront(sticker.id)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  bringToFront(sticker.id);
+                }
+              }}
               initial={{
                 x: sticker.initialX,
                 y: sticker.initialY,
-                rotate: sticker.initialRotate,
+                rotate: reducedMotion ? 0 : sticker.initialRotate,
               }}
-              className="absolute cursor-grab active:cursor-grabbing hover:-translate-y-0.5 hover:shadow-hard-lg transition-shadow max-w-[280px] sm:max-w-[310px] p-4 border-2 border-ink shadow-hard select-none"
+              className="absolute cursor-grab active:cursor-grabbing hover:-translate-y-0.5 hover:shadow-hard-lg focus-visible:ring-2 focus-visible:ring-tomato focus-visible:outline-none transition-shadow max-w-[280px] sm:max-w-[310px] p-4 border-2 border-ink shadow-hard select-none"
               style={{
                 backgroundColor: sticker.color,
                 color: sticker.textColor,
@@ -182,7 +198,7 @@ export function StickerPile() {
                 {/* Visual affordance grab indicator */}
                 <span className="font-mono text-xs font-bold px-1.5 py-0.5 bg-ink/10 text-ink border border-ink/30 flex items-center gap-1">
                   <span>⠿</span>
-                  <span>Drag</span>
+                  <span>{reducedMotion ? "Focus" : "Drag"}</span>
                 </span>
               </div>
               <h4 className="font-display font-extrabold text-base tracking-tight leading-tight">

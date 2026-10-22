@@ -3,17 +3,28 @@ import React from "react";
 interface DoodleProps {
   className?: string;
   accent?: string;
+  title?: string;
+  decorative?: boolean;
 }
 
-export function WheelchairDoodle({ className = "w-24 h-24", accent = "#FFD13B" }: DoodleProps) {
+export function WheelchairDoodle({
+  className = "w-24 h-24",
+  accent = "#FFD13B",
+  title,
+  decorative = true,
+}: DoodleProps) {
   return (
     <svg
       viewBox="0 0 110 110"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
-      aria-label="Hand-drawn voice-controlled assistive wheelchair doodle"
+      aria-hidden={decorative && !title ? "true" : undefined}
+      role={title ? "img" : undefined}
+      aria-label={title}
+      focusable="false"
     >
+      {title && <title>{title}</title>}
       {/* Voice wave indicator near headrest */}
       <path d="M78 20 C84 24 84 32 78 36" stroke="#179A94" strokeWidth="2" strokeLinecap="round" />
       <path d="M84 14 C92 20 92 38 84 44" stroke="#179A94" strokeWidth="2" strokeLinecap="round" />

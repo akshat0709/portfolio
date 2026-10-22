@@ -7,7 +7,7 @@ import { MagneticButton } from "@/components/ui/MagneticButton";
 
 export function RescueRobotView() {
   return (
-    <main className="min-h-screen pt-28 pb-20 selection:bg-sunny">
+    <main id="main-content" className="min-h-screen pt-28 pb-20 selection:bg-sunny">
       <article className="max-w-4xl mx-auto px-4 sm:px-6">
         {/* Back Link */}
         <div className="mb-8">

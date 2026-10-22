@@ -71,7 +71,7 @@ export function HomeView() {
   ];
 
   return (
-    <main className="min-h-screen pt-24 sm:pt-28 pb-16 selection:bg-sunny">
+    <main id="main-content" className="min-h-screen pt-24 sm:pt-28 pb-16 selection:bg-sunny">
       {/* ===================== HERO SECTION ===================== */}
       <section id="hero" className="relative px-4 sm:px-6 pt-6 sm:pt-10 pb-16 sm:pb-20 overflow-hidden">
         <div className="max-w-5xl mx-auto">

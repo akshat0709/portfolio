@@ -106,6 +106,12 @@ export default function RootLayout({
         />
       </head>
       <body className="bg-cream dark:bg-[#121212] text-ink dark:text-cream min-h-screen flex flex-col font-body transition-colors duration-200">
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[10000] focus:px-4 focus:py-2 focus:bg-sunny focus:text-ink focus:border-2 focus:border-ink focus:shadow-hard font-mono text-xs font-bold uppercase tracking-wider"
+        >
+          Skip to main content →
+        </a>
         <CursorBlob />
         <Navbar />
         <div className="flex-1">{children}</div>

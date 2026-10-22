@@ -4,7 +4,7 @@ import { RobotDoodle } from "@/components/doodles/RobotDoodle";
 
 export default function NotFound() {
   return (
-    <main className="min-h-[70vh] flex items-center justify-center px-4 py-20 selection:bg-sunny">
+    <main id="main-content" className="min-h-[70vh] flex items-center justify-center px-4 py-20 selection:bg-sunny">
       <div className="max-w-md w-full border-2 border-ink dark:border-cream bg-white dark:bg-[#1E1E1E] shadow-hard-lg dark:shadow-hard-dark-lg p-8 text-center relative">
         <div className="inline-block px-3 py-1 bg-tomato text-white border-2 border-ink font-mono text-xs font-black uppercase tracking-wider mb-6 rotate-[-2deg]">
           404 · Signal Lost

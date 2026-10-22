@@ -3,17 +3,28 @@ import React from "react";
 interface DoodleProps {
   className?: string;
   accent?: string;
+  title?: string;
+  decorative?: boolean;
 }
 
-export function TaxiDoodle({ className = "w-28 h-20", accent = "#FFD13B" }: DoodleProps) {
+export function TaxiDoodle({
+  className = "w-28 h-20",
+  accent = "#FFD13B",
+  title,
+  decorative = true,
+}: DoodleProps) {
   return (
     <svg
       viewBox="0 0 160 100"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
-      aria-label="Hand-drawn electric taxi doodle"
+      aria-hidden={decorative && !title ? "true" : undefined}
+      role={title ? "img" : undefined}
+      aria-label={title}
+      focusable="false"
     >
+      {title && <title>{title}</title>}
       {/* Roof Light Sign */}
       <rect
         x="68"

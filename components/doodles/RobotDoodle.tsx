@@ -3,17 +3,28 @@ import React from "react";
 interface DoodleProps {
   className?: string;
   accent?: string;
+  title?: string;
+  decorative?: boolean;
 }
 
-export function RobotDoodle({ className = "w-24 h-24", accent = "#179A94" }: DoodleProps) {
+export function RobotDoodle({
+  className = "w-24 h-24",
+  accent = "#179A94",
+  title,
+  decorative = true,
+}: DoodleProps) {
   return (
     <svg
       viewBox="0 0 120 120"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
-      aria-label="Hand-drawn rescue robot rover doodle"
+      aria-hidden={decorative && !title ? "true" : undefined}
+      role={title ? "img" : undefined}
+      aria-label={title}
+      focusable="false"
     >
+      {title && <title>{title}</title>}
       {/* Sensor Mast & Antenna */}
       <line x1="60" y1="36" x2="60" y2="12" stroke="#1A1A1A" strokeWidth="2.5" strokeLinecap="round" />
       <circle cx="60" cy="10" r="5" fill="#FF4336" stroke="#1A1A1A" strokeWidth="2" />
