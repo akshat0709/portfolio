@@ -2,10 +2,19 @@
 
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { TaxiDoodle } from "@/components/doodles/TaxiDoodle";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 
-export function OrangeTaxiView() {
+interface OrangeTaxiViewProps {
+  screenshots?: {
+    rider?: boolean;
+    dispatch?: boolean;
+    qr?: boolean;
+  };
+}
+
+export function OrangeTaxiView({ screenshots }: OrangeTaxiViewProps) {
   return (
     <main className="min-h-screen pt-28 pb-20 selection:bg-sunny">
       <article className="max-w-4xl mx-auto px-4 sm:px-6">
@@ -120,15 +129,27 @@ export function OrangeTaxiView() {
             To achieve immediate accessibility on any smartphone, I designed and built the complete rider and driver application stack as an installable Progressive Web App (PWA).
           </p>
 
-          {/* Placeholder 1 */}
-          <div className="border-2 border-dashed border-ink dark:border-cream bg-cream dark:bg-[#1C1C1C] p-8 text-center my-8">
-            <span className="font-mono text-xs font-bold px-2 py-1 bg-tomato text-white inline-block mb-2">
-              [SCREENSHOT: Rider PWA Booking Flow]
-            </span>
-            <p className="font-mono text-xs text-ink/70 dark:text-cream/70 max-w-md mx-auto">
-              Replace with screenshot of the mobile PWA booking screen, airport transfer destination selector, and EV ride tiers.
-            </p>
-          </div>
+          {/* Screenshot 1 */}
+          {screenshots?.rider ? (
+            <div className="border-2 border-ink dark:border-cream shadow-hard overflow-hidden my-8 bg-cream">
+              <Image
+                src="/screenshots/orange-taxi-rider.png"
+                alt="Orange Taxi Rider PWA Booking Flow"
+                width={1200}
+                height={750}
+                className="w-full h-auto"
+              />
+            </div>
+          ) : (
+            <div className="border-2 border-dashed border-ink dark:border-cream bg-cream dark:bg-[#1C1C1C] p-8 text-center my-8">
+              <span className="font-mono text-xs font-bold px-2 py-1 bg-tomato text-white inline-block mb-2">
+                [SCREENSHOT: Rider PWA Booking Flow]
+              </span>
+              <p className="font-mono text-xs text-ink/70 dark:text-cream/70 max-w-md mx-auto">
+                Replace with screenshot of the mobile PWA booking screen, airport transfer destination selector, and EV ride tiers.
+              </p>
+            </div>
+          )}
         </section>
 
         {/* Content Section 2: Realtime Dispatch Engine */}
@@ -156,15 +177,27 @@ export function OrangeTaxiView() {
             </ul>
           </div>
 
-          {/* Placeholder 2 */}
-          <div className="border-2 border-dashed border-ink dark:border-cream bg-cream dark:bg-[#1C1C1C] p-8 text-center my-8">
-            <span className="font-mono text-xs font-bold px-2 py-1 bg-sunny text-ink border border-ink inline-block mb-2">
-              [SCREENSHOT: Dispatch Dashboard &amp; Live Coordinate Map]
-            </span>
-            <p className="font-mono text-xs text-ink/70 dark:text-cream/70 max-w-md mx-auto">
-              Replace with screenshot of the active dispatch view showing driver status markers, assigned Mahindra BE.6 vehicles, and telemetry.
-            </p>
-          </div>
+          {/* Screenshot 2 */}
+          {screenshots?.dispatch ? (
+            <div className="border-2 border-ink dark:border-cream shadow-hard overflow-hidden my-8 bg-cream">
+              <Image
+                src="/screenshots/orange-taxi-dispatch.png"
+                alt="Orange Taxi Dispatch Dashboard & Live Coordinate Map"
+                width={1200}
+                height={750}
+                className="w-full h-auto"
+              />
+            </div>
+          ) : (
+            <div className="border-2 border-dashed border-ink dark:border-cream bg-cream dark:bg-[#1C1C1C] p-8 text-center my-8">
+              <span className="font-mono text-xs font-bold px-2 py-1 bg-sunny text-ink border border-ink inline-block mb-2">
+                [SCREENSHOT: Dispatch Dashboard &amp; Live Coordinate Map]
+              </span>
+              <p className="font-mono text-xs text-ink/70 dark:text-cream/70 max-w-md mx-auto">
+                Replace with screenshot of the active dispatch view showing driver status markers, assigned Mahindra BE.6 vehicles, and telemetry.
+              </p>
+            </div>
+          )}
         </section>
 
         {/* Content Section 3: In-App UPI & Dynamic QR */}
@@ -194,15 +227,27 @@ export function OrangeTaxiView() {
             </div>
           </div>
 
-          {/* Placeholder 3 */}
-          <div className="border-2 border-dashed border-ink dark:border-cream bg-cream dark:bg-[#1C1C1C] p-8 text-center my-8">
-            <span className="font-mono text-xs font-bold px-2 py-1 bg-teal text-white inline-block mb-2">
-              [SCREENSHOT: Dynamic UPI QR Driver Handover Screen]
-            </span>
-            <p className="font-mono text-xs text-ink/70 dark:text-cream/70 max-w-md mx-auto">
-              Replace with screenshot of the dynamic QR modal with transaction verification badge.
-            </p>
-          </div>
+          {/* Screenshot 3 */}
+          {screenshots?.qr ? (
+            <div className="border-2 border-ink dark:border-cream shadow-hard overflow-hidden my-8 bg-cream">
+              <Image
+                src="/screenshots/orange-taxi-qr.png"
+                alt="Orange Taxi Dynamic UPI QR Driver Handover Screen"
+                width={1200}
+                height={750}
+                className="w-full h-auto"
+              />
+            </div>
+          ) : (
+            <div className="border-2 border-dashed border-ink dark:border-cream bg-cream dark:bg-[#1C1C1C] p-8 text-center my-8">
+              <span className="font-mono text-xs font-bold px-2 py-1 bg-teal text-white inline-block mb-2">
+                [SCREENSHOT: Dynamic UPI QR Driver Handover Screen]
+              </span>
+              <p className="font-mono text-xs text-ink/70 dark:text-cream/70 max-w-md mx-auto">
+                Replace with screenshot of the dynamic QR modal with transaction verification badge.
+              </p>
+            </div>
+          )}
         </section>
 
         {/* Technical Stack Index */}

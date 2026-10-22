@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import fs from "fs";
+import path from "path";
 import { OrangeTaxiView } from "./OrangeTaxiView";
 import { siteConfig } from "@/lib/site";
 
@@ -20,5 +22,12 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <OrangeTaxiView />;
+  const screenshotsDir = path.join(process.cwd(), "public", "screenshots");
+  const screenshots = {
+    rider: fs.existsSync(path.join(screenshotsDir, "orange-taxi-rider.png")),
+    dispatch: fs.existsSync(path.join(screenshotsDir, "orange-taxi-dispatch.png")),
+    qr: fs.existsSync(path.join(screenshotsDir, "orange-taxi-qr.png")),
+  };
+
+  return <OrangeTaxiView screenshots={screenshots} />;
 }

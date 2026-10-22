@@ -331,50 +331,65 @@ export function ContactSection() {
 export function Footer() {
   return (
     <footer className="border-t-2 border-ink dark:border-cream bg-[#FFF6E5] dark:bg-[#121212] py-10 px-4 sm:px-6">
-      <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
-        <div className="flex items-center gap-3">
-          <span className="w-7 h-7 rounded-full bg-tomato border-2 border-ink flex items-center justify-center font-mono font-bold text-xs text-white">
-            AG
-          </span>
-          <span className="font-display font-bold text-sm text-ink dark:text-cream">
-            {siteConfig.name} · Hand-crafted with point of view
-          </span>
+      <div className="max-w-5xl mx-auto space-y-6">
+        {/* "Now" Status Strip driven by lib/site.ts */}
+        <div className="border-2 border-ink dark:border-cream bg-white dark:bg-[#1E1E1E] p-4 shadow-hard-sm flex flex-col sm:flex-row sm:items-center justify-between gap-3 font-mono text-xs">
+          <div className="flex items-center gap-2">
+            <span className="w-2.5 h-2.5 rounded-full bg-teal animate-pulse" />
+            <span className="font-bold uppercase tracking-wider text-ink dark:text-cream">Currently building:</span>
+            <span className="text-ink/80 dark:text-cream/80">{siteConfig.currentlyBuilding}</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="font-bold uppercase tracking-wider text-tomato">Currently learning:</span>
+            <span className="text-ink/80 dark:text-cream/80">{siteConfig.currentlyLearning}</span>
+          </div>
         </div>
 
-        <div className="flex items-center gap-5 font-mono text-sm font-bold">
-          <a
-            href={siteConfig.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-ink dark:text-cream hover:text-tomato underline decoration-2"
-            data-cursor-label="github"
-          >
-            GitHub
-          </a>
-          <a
-            href={siteConfig.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-ink dark:text-cream hover:text-teal underline decoration-2"
-            data-cursor-label="linkedin"
-          >
-            LinkedIn
-          </a>
-          <a
-            href="/Akshat_Gupta_Resume.pdf"
-            download
-            className="text-ink dark:text-cream hover:text-sunny underline decoration-2"
-            data-cursor-label="resume"
-          >
-            Resume (PDF)
-          </a>
-          <Link
-            href="#hero"
-            className="px-2 py-1 bg-white dark:bg-ink border border-ink dark:border-cream text-xs uppercase"
-            data-cursor-label="top"
-          >
-            ↑ Top
-          </Link>
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-2">
+          <div className="flex items-center gap-3">
+            <span className="w-7 h-7 rounded-full bg-tomato border-2 border-ink flex items-center justify-center font-mono font-bold text-xs text-white">
+              AG
+            </span>
+            <span className="font-display font-bold text-sm text-ink dark:text-cream">
+              {siteConfig.name} · Hand-crafted with point of view
+            </span>
+          </div>
+
+          <div className="flex items-center gap-5 font-mono text-sm font-bold">
+            <a
+              href={siteConfig.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-ink dark:text-cream hover:text-tomato underline decoration-2"
+              data-cursor-label="github"
+            >
+              GitHub
+            </a>
+            <a
+              href={siteConfig.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-ink dark:text-cream hover:text-teal underline decoration-2"
+              data-cursor-label="linkedin"
+            >
+              LinkedIn
+            </a>
+            <a
+              href="/Akshat_Gupta_Resume.pdf"
+              download
+              className="text-ink dark:text-cream hover:text-sunny underline decoration-2"
+              data-cursor-label="resume"
+            >
+              Resume (PDF)
+            </a>
+            <Link
+              href="#hero"
+              className="px-2 py-1 bg-white dark:bg-ink border border-ink dark:border-cream text-xs uppercase"
+              data-cursor-label="top"
+            >
+              ↑ Top
+            </Link>
+          </div>
         </div>
       </div>
     </footer>
