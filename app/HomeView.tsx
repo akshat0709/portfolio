@@ -10,6 +10,7 @@ import { WheelchairDoodle } from "@/components/doodles/WheelchairDoodle";
 import { ChaiDoodle } from "@/components/doodles/ChaiDoodle";
 import { ContactSection } from "@/components/ui/Footer";
 import { MagneticButton } from "@/components/ui/MagneticButton";
+import { projects } from "@/data/projects";
 
 const springOvershoot = {
   type: "spring",
@@ -22,7 +23,7 @@ export function HomeView() {
     {
       num: "01",
       title: "Projects & Systems",
-      subtitle: "3 real engineering systems with dedicated case studies",
+      subtitle: `${projects.length} real engineering systems with dedicated case studies`,
       description:
         "Full-stack electric ride-hailing PWA (Orange Taxi), GPS-denied autonomous disaster rescue rover, and low-latency locomotive vision ML.",
       badge: "Flagship Work",

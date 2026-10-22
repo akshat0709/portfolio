@@ -7,6 +7,18 @@ import { RobotDoodle } from "@/components/doodles/RobotDoodle";
 import { TrainDoodle } from "@/components/doodles/TrainDoodle";
 import { ProjectCard } from "@/components/ui/ProjectCard";
 import { EarlyWorkSection } from "@/components/ui/ExperienceAndRecognition";
+import { projects, Project } from "@/data/projects";
+
+function getProjectDoodle(doodle: Project["doodle"]) {
+  switch (doodle) {
+    case "taxi":
+      return <TaxiDoodle className="w-36 h-24" />;
+    case "robot":
+      return <RobotDoodle className="w-28 h-28" />;
+    case "train":
+      return <TrainDoodle className="w-36 h-24" />;
+  }
+}
 
 export function ProjectsView() {
   return (
@@ -31,7 +43,7 @@ export function ProjectsView() {
               Projects Archive
             </span>
             <span className="font-mono text-xs font-bold px-2.5 py-0.5 bg-sunny text-ink border border-ink">
-              3 Production Systems
+              {projects.length} Production Systems
             </span>
           </div>
 
@@ -46,50 +58,23 @@ export function ProjectsView() {
 
         {/* Project Cards Stack */}
         <div className="space-y-12">
-          {/* Project 1 */}
-          <ProjectCard
-            slug="orange-taxi"
-            number="01"
-            title="Orange Taxi: Full-Stack Electric Ride-Hailing Platform"
-            tagline="Pre-launch premium 100% electric cab service in Delhi NCR using Mahindra BE.6 electric SUVs for airport transfers and corporate accounts."
-            category="Web / Production PWA / Flagship"
-            stack={["React", "TypeScript", "TanStack Start", "Supabase", "PostgreSQL", "Tailwind CSS", "PWA"]}
-            highlight="Built real-time dispatch engine on Supabase Realtime (ride requests, live driver coordinates, in-ride chat) + in-app UPI dynamic QR driver handover flow."
-            liveUrl="https://orange-taxi.com"
-            accentColor="sunny"
-            initialRotation={0}
-            doodle={<TaxiDoodle className="w-36 h-24" />}
-          />
-
-          {/* Project 2 */}
-          <ProjectCard
-            slug="autonomous-rescue-robot"
-            number="02"
-            title="Autonomous Search and Rescue Robot"
-            tagline="Hazardous terrain exploration rover engineered for independent navigation and survivor telemetry in GPS-denied disaster environments."
-            category="IoT / Embedded / Robotics"
-            stack={["C/C++", "Microcontrollers", "LiDAR/Sensors", "Path Planning", "Telemetry", "Autonomous Logic"]}
-            highlight="Obstacle detection sensor fusion, real-time hazardous telemetry transmission, path planning in GPS-denied zones, and fail-safe decision logic."
-            repoUrl="https://github.com/akshat0709/AutonomousSearchAndRescueRobot"
-            accentColor="teal"
-            initialRotation={0}
-            doodle={<RobotDoodle className="w-28 h-28" />}
-          />
-
-          {/* Project 3 */}
-          <ProjectCard
-            slug="animal-detection"
-            number="03"
-            title="Animal Detection in Locomotive Tracks"
-            tagline="Real-time computer vision system processing live locomotive cab video streams to detect track wildlife and prevent collisions."
-            category="Python / Computer Vision / AI-ML"
-            stack={["Python", "Computer Vision", "Deep Learning", "Real-Time Alerts", "Video Pipeline"]}
-            highlight="Low-latency inference on video feeds, real-time alert dispatch to train operators, and emergency safety protocol triggers."
-            repoUrl="https://github.com/akshat0709/AnimalDetection"
-            accentColor="tomato"
-            initialRotation={0}
-            doodle={<TrainDoodle className="w-36 h-24" />}
-          />
+          {projects.map((project) => (
+            <ProjectCard
+              key={project.slug}
+              slug={project.slug}
+              number={project.number}
+              title={project.title}
+              tagline={project.tagline}
+              category={project.category}
+              stack={project.stack}
+              highlight={project.highlight}
+              liveUrl={project.liveUrl}
+              repoUrl={project.repoUrl}
+              accentColor={project.accentColor}
+              initialRotation={project.initialRotation ?? 0}
+              doodle={getProjectDoodle(project.doodle)}
+            />
+          ))}
         </div>
 
         {/* Early Experiments Strip */}
