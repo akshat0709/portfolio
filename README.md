@@ -2,7 +2,7 @@
 
 Hand-crafted personal portfolio website for **Akshat Gupta** — Full-stack developer and CS undergrad (IoT, Cybersecurity & Blockchain) at BMS College of Engineering, Bengaluru.
 
-Built with **Next.js 14 (App Router)**, **TypeScript**, **Tailwind CSS**, and **Framer Motion**, styled in a playful indie-zine / editorial aesthetic featuring a cream/ink palette, tomato/sunny/teal accents, 2px ink borders, hard offset shadows, doodle SVGs, and an interactive sticker pile.
+Built with **Next.js 14 (App Router)**, **TypeScript**, **Tailwind CSS**, and **Framer Motion**, styled in a playful indie-zine / editorial aesthetic featuring a cream/ink palette, tomato/sunny/teal accents, 2px ink borders, hard offset shadows, doodle SVGs, an interactive sticker pile, and a built-in keyboard command palette.
 
 ---
 
@@ -29,6 +29,7 @@ Set the following variables:
 | `NEXT_PUBLIC_SITE_URL` | Canonical domain for metadata, sitemap, Open Graph, and JSON-LD schema | `http://localhost:3000` |
 | `RESEND_API_KEY` | *(Optional)* Resend API key for sending contact form submissions | `re_...` |
 | `CONTACT_TO_EMAIL` | *(Optional)* Destination email receiving contact submissions | `akshat070906@gmail.com` |
+| `GITHUB_TOKEN` | *(Optional)* GitHub personal access token for higher rate limits on repo activity fetching | `ghp_...` |
 
 > **Note on Contact Form Fallback:** If `RESEND_API_KEY` is not provided or fails, the API route fails gracefully and the client automatically presents a direct `mailto:` fallback link with the user's prefilled message.
 
@@ -46,46 +47,44 @@ npm run build
 
 ---
 
-## 📁 Project Structure
+## 🟢 Updating Availability
 
+Akshat's availability status is rendered as a sticker badge in the navbar and mobile drawer.
+
+To update:
+1. Open [`lib/site.ts`](file:///Users/akshatgupta/Desktop/Akshat/lib/site.ts).
+2. Edit the `availability` object:
+```typescript
+availability: {
+  open: true, // set to false to completely hide the badge
+  label: "Open to internships, 2027", // or "Open to early-career roles"
+}
 ```
-├── app/
-│   ├── layout.tsx                     # Root layout (next/font, metadataBase, JSON-LD, Skip link, Cursor)
-│   ├── page.tsx / HomeView.tsx        # Home page (Server metadata + Client view)
-│   ├── projects/                      # Projects list & case studies
-│   │   ├── page.tsx / ProjectsView.tsx
-│   │   ├── orange-taxi/               # Flagship case study
-│   │   ├── autonomous-rescue-robot/   # Rescue Robot case study
-│   │   └── animal-detection/          # Animal Detection case study
-│   ├── skills/                        # Skills index
-│   ├── experience/                    # Experience timeline
-│   ├── about/                         # Bio, philosophy & background
-│   ├── not-found.tsx                  # Custom 404 page
-│   ├── opengraph-image.tsx            # Dynamic 1200x630 OG image via next/og ImageResponse
-│   ├── twitter-image.tsx              # Twitter card image
-│   ├── icon.svg & apple-icon.tsx      # Favicon and Apple touch icons
-│   ├── sitemap.ts & robots.ts         # Dynamic sitemap & robots.txt
-│   └── api/contact/route.ts           # Contact API route (rate limited, honeypot, Resend email)
-├── components/
-│   ├── doodles/                       # Hand-crafted SVG doodles (TaxiDoodle, RobotDoodle, etc.)
-│   └── ui/                            # Navbar, Footer (with contact form & Now strip), StickerPile, etc.
-├── data/
-│   └── projects.ts                    # Typed project directory driving the projects list & sitemap
-├── lib/
-│   └── site.ts                        # Centralized site constants & personal config
-└── public/
-    ├── Akshat_Gupta_Resume.pdf        # Downloadable 1-page PDF resume
-    └── screenshots/                   # Production screenshots for case-study pages
-```
+3. The indicator dot pulses once on load (respects `prefers-reduced-motion`) and links directly to the `#contact` form.
 
 ---
 
-## 🛠️ How to Add a New Project
+## ⌨️ Command Palette (⌘K / Ctrl+K)
+
+The portfolio includes a zero-dependency, keyboard-accessible command palette ([`components/ui/CommandPalette.tsx`](file:///Users/akshatgupta/Desktop/Akshat/components/ui/CommandPalette.tsx)):
+- **Shortcut:** Press <kbd>⌘</kbd> + <kbd>K</kbd> (Mac) or <kbd>Ctrl</kbd> + <kbd>K</kbd> (Windows/Linux), or click the **⌘K** button in the navigation bar. (Hint button is hidden on touch devices).
+- **Fuzzy Search:** Type to instantly filter navigation targets, project case studies, and actions.
+- **Commands Available:**
+  - **Navigation:** Home, All Projects, Case Studies (Orange Taxi, Rescue Robot, Animal Detection), Skills Index, Experience, About, Contact.
+  - **Actions:** Copy Email (with instant clipboard feedback), Download Resume PDF, Open GitHub profile, Open LinkedIn profile, Toggle Dark/Light mode.
+- **Keyboard Controls:**
+  - <kbd>↑</kbd> / <kbd>↓</kbd>: Navigate through command results.
+  - <kbd>Enter</kbd>: Execute selected action or route navigation.
+  - <kbd>Esc</kbd>: Close palette and restore focus to previous element.
+
+---
+
+## 🛠️ How to Add or Update Project Data
 
 All portfolio projects are centralized in [`data/projects.ts`](file:///Users/akshatgupta/Desktop/Akshat/data/projects.ts).
 
 1. Open `data/projects.ts`.
-2. Add a new object to the `PROJECTS` array conforming to the `Project` type:
+2. Add or modify an entry in the `projects` array conforming to the `Project` type:
 ```typescript
 {
   slug: "my-new-project",            // URL slug: /projects/my-new-project
@@ -95,30 +94,51 @@ All portfolio projects are centralized in [`data/projects.ts`](file:///Users/aks
   category: "Full-Stack / Robotics / Mobile",
   stack: ["TypeScript", "Next.js", "PostgreSQL"],
   highlight: "Key feature or standout engineering achievement.",
-  liveUrl: "https://example.com",     // Optional: omit or set to null if not live
+  liveUrl: "https://example.com",     // Optional: omit if not live
   repoUrl: "https://github.com/...", // Optional: omit if private
   accentColor: "tomato",             // "tomato" | "sunny" | "teal"
-  doodle: "taxi",                    // "taxi" | "robot" | "train" | "wheelchair" | "chai"
-  featured: true,                    // Appears on home page if true
+  doodle: "taxi",                    // "taxi" | "robot" | "train"
+  whatIdDoDifferently: "Reflections on architectural choices and future improvements...",
 }
 ```
-3. If you want a dedicated deep-dive case-study page, create `app/projects/[slug]/page.tsx` and `app/projects/[slug]/[Slug]View.tsx` matching the structure of `app/projects/orange-taxi/`.
-4. Run `npm run build` — `sitemap.ts` and the projects index will automatically include the new project.
+3. If creating a dedicated deep-dive case-study page, add `app/projects/[slug]/page.tsx` and `app/projects/[slug]/[Slug]View.tsx`.
+4. Run `npm run build` — `sitemap.ts`, the home page 60-second version chips, and the command palette will automatically pick up the new project.
 
 ---
 
-## 📸 Adding Screenshots to Case Studies
+## 📸 Dropping in Screenshots for Case Studies
 
-The flagship case study (`/projects/orange-taxi`) automatically detects and showcases production screenshots using `next/image` with responsive blur-up placeholders.
+Each case-study page features an automatic screenshot gallery ([`components/ui/ProjectGallery.tsx`](file:///Users/akshatgupta/Desktop/Akshat/components/ui/ProjectGallery.tsx)) with a built-in keyboard-accessible lightbox:
 
-To add or update screenshots:
-1. Save optimized `.png`, `.jpg`, or `.webp` images into `public/screenshots/`.
-2. Use descriptive kebab-case names, for example:
-   - `orange-taxi-1.png` (Rider booking flow / dispatch map)
-   - `orange-taxi-2.png` (Driver real-time interface / earnings)
-   - `orange-taxi-3.png` (Dynamic UPI QR payment handover)
-3. Recommended resolution: **1600×1000px** or **1920×1080px** (16:10 or 16:9 aspect ratio), compressed under **350KB** each.
-4. When images exist in `public/screenshots/`, the gallery automatically replaces the fallback interactive schematic cards.
+1. Drop `.png`, `.jpg`, or `.webp` files into `public/screenshots/<slug>/`:
+   - `public/screenshots/orange-taxi/`
+   - `public/screenshots/autonomous-rescue-robot/`
+   - `public/screenshots/animal-detection/`
+2. Name files descriptively using kebab-case (e.g. `rider-booking-flow.png`, `realtime-dispatch-map.png`). The gallery transforms filenames into accessible alt captions (e.g. "Rider Booking Flow").
+3. When images exist in the folder, the gallery renders them with `next/image` lazy loading and opens an accessible lightbox on click.
+4. If no images exist, a clean `[SCREENSHOTS_PLACEHOLDER]` block is rendered automatically.
+
+---
+
+## 📐 Architecture Diagrams
+
+The portfolio includes an inline SVG diagram component ([`components/ui/ArchitectureDiagram.tsx`](file:///Users/akshatgupta/Desktop/Akshat/components/ui/ArchitectureDiagram.tsx)):
+- Styled with hand-crafted 2px ink strokes, doodle-like rounded corners (`rx="6"`), hard offset shadows, and color-coded subsystem nodes.
+- Pass `nodes` and `edges` props to define system topology:
+```tsx
+<ArchitectureDiagram
+  title="My System Architecture"
+  subtitle="Client -> API -> Database"
+  nodes={[
+    { id: "client", label: "Client PWA", x: 30, y: 35, width: 210, height: 75, color: "#FFF6E5" },
+    { id: "api", label: "Edge Functions", x: 310, y: 115, width: 230, height: 120, color: "#179A94", textColor: "#FFF" },
+  ]}
+  edges={[
+    { from: "client", to: "api", label: "REST / WebSocket" }
+  ]}
+/>
+```
+- For pages awaiting architecture structure (such as the robot and animal detection), pass `isPlaceholder={true}` and `placeholderText="[DIAGRAM_PLACEHOLDER]"`.
 
 ---
 
@@ -129,7 +149,9 @@ To add or update screenshots:
   - Tomato `#FF4336` and Teal `#179A94` pair with White `#FFFFFF` text (> 4.5:1 ratio).
   - High-visibility focus ring on `:focus-visible` (`2px solid #FF4336`, `3px offset`).
 - **Skip Link:** Accessible "Skip to main content →" anchor jumps keyboard focus straight to `<main id="main-content">`.
-- **Keyboard Navigation:** Sticker pile is operable via keyboard (`Tab` to focus, `Enter` or `Space` to cycle z-index).
-- **Reduced Motion:** Fully honors `prefers-reduced-motion: reduce` by disabling floating animations, spring drags, and rotational wobbles.
-- **Smart Cursor:** Custom cursor blob automatically hides on keyboard navigation (`Tab`), never intercepts pointer clicks (`pointer-events-none`), and re-enables on mouse move.
-- **Shared First-Load JS:** Under **88 kB** shared across all static routes, exceeding the 120 kB target.
+- **Keyboard Navigation:** 
+  - Command palette: <kbd>↑</kbd>/<kbd>↓</kbd> arrows, <kbd>Enter</kbd> to execute, <kbd>Esc</kbd> to close.
+  - Image lightbox: <kbd>←</kbd>/<kbd>→</kbd> arrows to navigate, <kbd>Esc</kbd> to close, focus trapped.
+  - Sticker pile: <kbd>Tab</kbd> to focus, <kbd>Enter</kbd> or <kbd>Space</kbd> to bring to front.
+- **Reduced Motion:** Fully honors `prefers-reduced-motion: reduce` by disabling animations, spring drags, and rotational wobbles.
+- **First-Load JS:** **87.3 kB** shared across all static routes (well under the 120 kB threshold).
