@@ -3,10 +3,12 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "framer-motion";
+import { motion, useScroll, useMotionValueEvent, AnimatePresence, useReducedMotion } from "framer-motion";
+import { siteConfig } from "@/lib/site";
 
 export function Navbar() {
   const pathname = usePathname();
+  const shouldReduceMotion = useReducedMotion();
   const { scrollY, scrollYProgress } = useScroll();
   const [hidden, setHidden] = useState(false);
   const [lastY, setLastY] = useState(0);
@@ -72,19 +74,38 @@ export function Navbar() {
     >
       <div className="max-w-5xl mx-auto">
         <div className="bg-[#FFF6E5] dark:bg-[#1A1A1A] border-2 border-ink dark:border-[#FFF6E5] shadow-hard dark:shadow-hard-dark px-4 sm:px-6 py-2.5 flex items-center justify-between transition-colors">
-          {/* Logo / Monogram */}
-          <Link
-            href="/"
-            className="flex items-center gap-2 group font-display font-extrabold text-xl text-ink dark:text-cream tracking-tight"
-            data-cursor-label="home"
-          >
-            <span className="w-8 h-8 rounded-full bg-sunny border-2 border-ink flex items-center justify-center text-xs font-mono font-bold text-ink group-hover:rotate-12 transition-transform duration-200">
-              AG
-            </span>
-            <span className="hover:underline underline-offset-4 decoration-2 decoration-tomato">
-              Akshat Gupta
-            </span>
-          </Link>
+          {/* Logo / Monogram & Desktop Availability Badge */}
+          <div className="flex items-center gap-3">
+            <Link
+              href="/"
+              className="flex items-center gap-2 group font-display font-extrabold text-xl text-ink dark:text-cream tracking-tight"
+              data-cursor-label="home"
+            >
+              <span className="w-8 h-8 rounded-full bg-sunny border-2 border-ink flex items-center justify-center text-xs font-mono font-bold text-ink group-hover:rotate-12 transition-transform duration-200">
+                AG
+              </span>
+              <span className="hover:underline underline-offset-4 decoration-2 decoration-tomato">
+                Akshat Gupta
+              </span>
+            </Link>
+
+            {siteConfig.availability?.open && (
+              <Link
+                href="/#contact"
+                className="hidden lg:inline-flex items-center gap-2 px-2.5 py-1 bg-white dark:bg-[#1E1E1E] border-2 border-ink dark:border-cream shadow-hard-sm hover:shadow-none hover:translate-x-[1px] hover:translate-y-[1px] font-mono text-xs font-bold text-ink dark:text-cream transition-all"
+                data-cursor-label="contact"
+                title="Akshat is currently open for opportunities"
+              >
+                <motion.span
+                  className="w-2 h-2 rounded-full bg-teal border border-ink flex-shrink-0"
+                  initial={shouldReduceMotion ? { scale: 1 } : { scale: 1 }}
+                  animate={shouldReduceMotion ? undefined : { scale: [1, 1.45, 1] }}
+                  transition={{ duration: 0.6, times: [0, 0.5, 1], repeat: 0 }}
+                />
+                <span>{siteConfig.availability.label}</span>
+              </Link>
+            )}
+          </div>
 
           {/* Desktop Nav Links */}
           <nav className="hidden md:flex items-center gap-2 font-mono text-sm font-bold">
@@ -165,6 +186,23 @@ export function Navbar() {
               className="md:hidden mt-2 border-2 border-ink dark:border-cream bg-[#FFF6E5] dark:bg-[#1A1A1A] shadow-hard dark:shadow-hard-dark p-4"
             >
               <div className="flex flex-col gap-2 font-mono text-sm font-bold">
+                {/* Mobile Availability Badge */}
+                {siteConfig.availability?.open && (
+                  <Link
+                    href="/#contact"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="px-3 py-2 border-2 border-ink dark:border-cream bg-white dark:bg-[#1E1E1E] shadow-hard-sm text-ink dark:text-cream flex items-center gap-2.5 font-mono text-xs font-bold hover:bg-sunny dark:hover:bg-sunny dark:hover:text-ink transition-colors mb-1"
+                  >
+                    <motion.span
+                      className="w-2.5 h-2.5 rounded-full bg-teal border border-ink flex-shrink-0"
+                      initial={shouldReduceMotion ? { scale: 1 } : { scale: 1 }}
+                      animate={shouldReduceMotion ? undefined : { scale: [1, 1.45, 1] }}
+                      transition={{ duration: 0.6, times: [0, 0.5, 1], repeat: 0 }}
+                    />
+                    <span>{siteConfig.availability.label}</span>
+                  </Link>
+                )}
+
                 {navLinks.map((item) => {
                   const isActive = pathname === item.href;
                   return (

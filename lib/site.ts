@@ -10,6 +10,10 @@ export const siteConfig = {
   linkedin: "https://linkedin.com/in/akshat-gupta-957084317",
   currentlyBuilding: "Orange Taxi electric fleet mobility platform",
   currentlyLearning: "React Native",
+  availability: {
+    open: true,
+    label: "Open to internships, 2027",
+  },
 };
 
 export const siteUrl = siteConfig.url;
