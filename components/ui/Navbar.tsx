@@ -13,7 +13,6 @@ export function Navbar() {
   const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
-    // Check initial dark mode from localStorage or preference
     const stored = localStorage.getItem("portfolio-theme");
     if (stored === "dark" || (!stored && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
       setIsDark(true);
@@ -48,6 +47,13 @@ export function Navbar() {
     setLastY(latest);
   });
 
+  const navLinks = [
+    { href: "/projects", label: "Projects" },
+    { href: "/skills", label: "Skills" },
+    { href: "/experience", label: "Experience" },
+    { href: "/about", label: "About" },
+  ];
+
   return (
     <motion.header
       variants={{
@@ -59,11 +65,11 @@ export function Navbar() {
       className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 pt-4 pb-2"
     >
       <div className="max-w-5xl mx-auto">
-        <div className="bg-[#FFF6E5] dark:bg-[#1A1A1A] border-2 border-ink dark:border-[#FFF6E5] shadow-hard dark:shadow-hard-dark px-4 sm:px-6 py-3 flex items-center justify-between transition-colors">
+        <div className="bg-[#FFF6E5] dark:bg-[#1A1A1A] border-2 border-ink dark:border-[#FFF6E5] shadow-hard dark:shadow-hard-dark px-4 sm:px-6 py-2.5 flex items-center justify-between transition-colors">
           {/* Logo / Monogram */}
           <Link
             href="/"
-            className="flex items-center gap-2 group font-display font-extrabold text-xl sm:text-2xl text-ink dark:text-cream tracking-tight"
+            className="flex items-center gap-2 group font-display font-extrabold text-xl text-ink dark:text-cream tracking-tight"
             data-cursor-label="home"
           >
             <span className="w-8 h-8 rounded-full bg-sunny border-2 border-ink flex items-center justify-center text-xs font-mono font-bold text-ink group-hover:rotate-12 transition-transform duration-200">
@@ -74,48 +80,44 @@ export function Navbar() {
             </span>
           </Link>
 
-          {/* Nav Links */}
-          <nav className="flex items-center gap-3 sm:gap-6 font-mono text-sm font-bold">
-            <Link
-              href="/#projects"
-              className="text-ink dark:text-cream hover:text-tomato dark:hover:text-tomato transition-colors py-1"
-              data-cursor-label="view"
-            >
-              Projects
-            </Link>
-            <Link
-              href="/#skills"
-              className="hidden sm:inline-block text-ink dark:text-cream hover:text-teal dark:hover:text-teal transition-colors py-1"
-              data-cursor-label="read"
-            >
-              Skills
-            </Link>
-            <Link
-              href="/#about"
-              className="hidden sm:inline-block text-ink dark:text-cream hover:text-sunny dark:hover:text-sunny transition-colors py-1"
-              data-cursor-label="bio"
-            >
-              About
-            </Link>
+          {/* Nav Links - Standardized consistent horizontal rhythm */}
+          <nav className="flex items-center gap-1 sm:gap-2 font-mono text-sm font-bold">
+            {navLinks.map((item) => {
+              const isActive = pathname === item.href || (pathname.startsWith(item.href) && item.href !== "/");
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={`px-2.5 py-1 transition-colors rounded-sm ${
+                    isActive
+                      ? "bg-ink text-cream dark:bg-cream dark:text-ink"
+                      : "text-ink dark:text-cream hover:text-tomato dark:hover:text-tomato"
+                  }`}
+                  data-cursor-label="navigate"
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
 
-            {/* Resume Download PDF */}
+            {/* Standardized Resume Link */}
             <a
               href="/Akshat_Gupta_Resume.pdf"
               download
               target="_blank"
               rel="noopener noreferrer"
-              className="border-2 border-ink dark:border-cream bg-sunny px-3 py-1 text-ink shadow-[2px_2px_0px_#1A1A1A] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0px_#1A1A1A] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all text-xs sm:text-sm font-bold uppercase tracking-wider flex items-center gap-1.5"
-              data-cursor-label="get pdf"
+              className="px-2.5 py-1 text-ink dark:text-cream hover:text-teal dark:hover:text-teal transition-colors flex items-center gap-1 border-b-2 border-transparent hover:border-teal"
+              data-cursor-label="resume"
             >
               <span>Resume</span>
-              <span className="text-[10px]">PDF</span>
+              <span className="text-xs text-tomato font-black">↓</span>
             </a>
 
             {/* Dark Mode Toggle */}
             <button
               onClick={toggleDarkMode}
               aria-label="Toggle theme"
-              className="w-8 h-8 border-2 border-ink dark:border-cream bg-white dark:bg-ink text-ink dark:text-cream flex items-center justify-center text-xs font-mono font-bold shadow-[2px_2px_0px_#1A1A1A] dark:shadow-[2px_2px_0px_#FFF6E5] hover:bg-cream dark:hover:bg-[#2A2A2A] transition-colors"
+              className="ml-1 w-8 h-8 border-2 border-ink dark:border-cream bg-white dark:bg-ink text-ink dark:text-cream flex items-center justify-center text-xs font-mono font-bold shadow-hard-sm dark:shadow-[2px_2px_0px_#FFF6E5] hover:bg-cream dark:hover:bg-[#2A2A2A] transition-colors"
               data-cursor-label="theme"
             >
               {isDark ? "☀" : "☾"}

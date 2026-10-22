@@ -13,13 +13,13 @@ interface SkillCategory {
 const skillCategories: SkillCategory[] = [
   {
     title: "Languages",
-    badge: "CORE",
+    badge: "Core",
     color: "#FFD13B", // sunny
     skills: ["Java", "C", "C++", "Python", "JavaScript", "TypeScript", "SQL"],
   },
   {
     title: "Web & Frontend",
-    badge: "UI/PWA",
+    badge: "UI & PWA",
     color: "#179A94", // teal
     skills: [
       "React",
@@ -33,7 +33,7 @@ const skillCategories: SkillCategory[] = [
   },
   {
     title: "Backend & Cloud",
-    badge: "SYSTEMS",
+    badge: "Systems",
     color: "#FF4336", // tomato
     skills: [
       "Supabase",
@@ -46,7 +46,7 @@ const skillCategories: SkillCategory[] = [
   },
   {
     title: "Cybersecurity",
-    badge: "DEFENSE",
+    badge: "Security",
     color: "#1A1A1A",
     skills: [
       "Kali Linux",
@@ -57,7 +57,7 @@ const skillCategories: SkillCategory[] = [
   },
   {
     title: "IoT & Embedded",
-    badge: "HARDWARE",
+    badge: "Hardware",
     color: "#179A94",
     skills: [
       "Sensor Integration",
@@ -68,7 +68,7 @@ const skillCategories: SkillCategory[] = [
   },
   {
     title: "Tools & Workflow",
-    badge: "DEV",
+    badge: "DevOps",
     color: "#FFD13B",
     skills: ["Git", "GitHub", "VS Code"],
   },
@@ -77,7 +77,7 @@ const skillCategories: SkillCategory[] = [
 export function SkillsIndex() {
   return (
     <div className="w-full">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
         {skillCategories.map((cat, idx) => (
           <motion.div
             key={cat.title}
@@ -88,17 +88,17 @@ export function SkillsIndex() {
               type: "spring",
               stiffness: 300,
               damping: 24,
-              delay: idx * 0.06,
+              delay: idx * 0.05,
             }}
-            className="border-2 border-ink dark:border-cream bg-white dark:bg-[#1E1E1E] shadow-hard dark:shadow-hard-dark p-5 flex flex-col justify-between"
+            className="h-full border-2 border-ink dark:border-cream bg-white dark:bg-[#1E1E1E] shadow-hard dark:shadow-hard-dark p-6 flex flex-col justify-between"
           >
             <div>
-              <div className="flex items-center justify-between pb-3 border-b-2 border-ink/20 dark:border-cream/20 mb-4">
+              <div className="flex items-center justify-between pb-3 border-b-2 border-ink/20 dark:border-cream/20 mb-4 min-h-[38px]">
                 <h3 className="font-display font-extrabold text-lg text-ink dark:text-cream tracking-tight">
                   {cat.title}
                 </h3>
                 <span
-                  className="font-mono text-[10px] font-black px-2 py-0.5 border border-ink dark:border-cream"
+                  className="font-mono text-xs font-bold px-2 py-0.5 border border-ink dark:border-cream"
                   style={{
                     backgroundColor: cat.color,
                     color: cat.color === "#1A1A1A" ? "#FFF6E5" : "#1A1A1A",
@@ -125,6 +125,11 @@ export function SkillsIndex() {
                 })}
               </div>
             </div>
+
+            <div className="pt-4 mt-4 border-t border-ink/10 dark:border-cream/10 flex items-center justify-between font-mono text-xs text-ink/70 dark:text-cream/70">
+              <span>Verified stack</span>
+              <span className="font-bold text-teal">0{idx + 1}</span>
+            </div>
           </motion.div>
         ))}
       </div>
@@ -137,14 +142,14 @@ export function SkillsIndex() {
         className="mt-6 border-2 border-ink dark:border-cream bg-sunny text-ink p-4 shadow-hard flex flex-col sm:flex-row sm:items-center justify-between gap-3"
       >
         <div className="flex items-center gap-3">
-          <span className="font-mono text-xs font-black px-2 py-1 bg-ink text-cream uppercase tracking-wider">
+          <span className="font-mono text-xs font-bold px-2.5 py-1 bg-ink text-cream">
             Active Study
           </span>
           <p className="font-display font-bold text-base sm:text-lg">
             Currently learning: <span className="underline decoration-2 decoration-tomato font-extrabold">React Native</span> (cross-platform mobile systems)
           </p>
         </div>
-        <span className="font-mono text-xs text-ink/70 uppercase">
+        <span className="font-mono text-xs text-ink/70">
           Status: In progress
         </span>
       </motion.div>

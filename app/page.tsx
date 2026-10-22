@@ -19,7 +19,6 @@ import {
 import { ContactSection } from "@/components/ui/Footer";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 
-// Single spring configuration matching guidelines
 const springOvershoot = {
   type: "spring",
   stiffness: 400,
@@ -32,29 +31,28 @@ export default function HomePage() {
       {/* ===================== HERO SECTION ===================== */}
       <section id="hero" className="relative px-4 sm:px-6 pt-6 sm:pt-10 pb-16 sm:pb-24 overflow-hidden">
         <div className="max-w-5xl mx-auto">
-          {/* Top Status Strip */}
+          {/* Top Status Strip - Fix for Issue 4: removed uppercase from 39-char phrase */}
           <motion.div
             initial={{ opacity: 0, y: -12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={springOvershoot}
             className="flex flex-wrap items-center gap-2 sm:gap-3 mb-6"
           >
-            <span className="inline-flex items-center gap-2 px-3 py-1 bg-white dark:bg-ink border-2 border-ink dark:border-cream shadow-hard-sm font-mono text-xs font-bold uppercase text-ink dark:text-cream -rotate-1">
+            <span className="inline-flex items-center gap-2 px-3 py-1 bg-white dark:bg-ink border-2 border-ink dark:border-cream shadow-hard-sm font-mono text-xs font-bold text-ink dark:text-cream -rotate-1">
               <span className="w-2.5 h-2.5 rounded-full bg-teal animate-pulse" />
-              Available for Internships & Early Roles
+              Available for internships &amp; early roles
             </span>
-            <span className="inline-block px-3 py-1 bg-sunny text-ink border-2 border-ink shadow-hard-sm font-mono text-xs font-bold uppercase rotate-1">
+            <span className="inline-block px-3 py-1 bg-sunny text-ink border-2 border-ink shadow-hard-sm font-mono text-xs font-bold rotate-1">
               Bengaluru · BMSCE &apos;28
             </span>
-            <span className="hidden sm:inline-block px-3 py-1 bg-cream dark:bg-[#252525] text-ink dark:text-cream border-2 border-ink dark:border-cream shadow-hard-sm font-mono text-xs font-bold uppercase">
+            <span className="hidden sm:inline-block px-3 py-1 bg-cream dark:bg-[#252525] text-ink dark:text-cream border-2 border-ink dark:border-cream shadow-hard-sm font-mono text-xs font-bold">
               CGPA 8.97
             </span>
           </motion.div>
 
-          {/* Hero Name & Oversized Statement */}
+          {/* Hero Name & Oversized Statement - Fix for Issue 14: adjusted watermark position and opacity */}
           <div className="relative">
-            {/* Oversized section stamp behind headline */}
-            <div className="select-none pointer-events-none opacity-5 dark:opacity-10 absolute -top-10 -left-6 sm:-left-10 font-display font-black text-7xl sm:text-9xl text-ink dark:text-cream">
+            <div className="select-none pointer-events-none opacity-[0.03] dark:opacity-[0.05] absolute -top-16 -left-6 sm:-left-10 font-display font-black text-7xl sm:text-9xl text-ink dark:text-cream">
               BUILDER
             </div>
 
@@ -79,16 +77,16 @@ export default function HomePage() {
                 —from a live electric ride-hailing platform to an autonomous rescue robot.
               </p>
 
-              <p className="font-body text-lg sm:text-xl text-ink/80 dark:text-cream/80 leading-relaxed">
+              <p className="font-body text-base sm:text-lg text-ink/80 dark:text-cream/80 leading-relaxed">
                 Currently in 3rd year at BMS College of Engineering, Bengaluru (IoT, Cybersecurity &amp; Blockchain). No placeholder mockups, zero buzzwords—just resilient code and functional hardware.
               </p>
             </motion.div>
           </div>
 
-          {/* Doodles popping in one by one and staying still */}
+          {/* Doodles popping in one by one - Fix for Issue 5: font-mono text-xs in sentence case */}
           <div className="relative my-6 py-6 border-y-2 border-ink/20 dark:border-cream/20 bg-cream/40 dark:bg-[#181818]">
-            <p className="font-mono text-[11px] font-black uppercase tracking-widest text-ink/60 dark:text-cream/60 mb-3 px-2">
-              Bespoke Artifacts from Real Projects:
+            <p className="font-mono text-xs font-bold text-ink/70 dark:text-cream/70 mb-3 px-2">
+              Bespoke artifacts from real projects:
             </p>
             <div className="grid grid-cols-2 sm:grid-cols-5 gap-4 items-center justify-items-center">
               <motion.div
@@ -99,7 +97,7 @@ export default function HomePage() {
                 title="Orange Taxi Electric Cab"
               >
                 <TaxiDoodle className="w-24 h-16" />
-                <span className="font-mono text-[10px] font-bold text-ink dark:text-cream mt-1">
+                <span className="font-mono text-xs font-bold text-ink dark:text-cream mt-1">
                   EV Taxi PWA
                 </span>
               </motion.div>
@@ -112,7 +110,7 @@ export default function HomePage() {
                 title="Autonomous Search & Rescue Rover"
               >
                 <RobotDoodle className="w-16 h-16" />
-                <span className="font-mono text-[10px] font-bold text-ink dark:text-cream mt-1">
+                <span className="font-mono text-xs font-bold text-ink dark:text-cream mt-1">
                   Rescue Rover
                 </span>
               </motion.div>
@@ -125,7 +123,7 @@ export default function HomePage() {
                 title="Train Track Animal Detection"
               >
                 <TrainDoodle className="w-24 h-16" />
-                <span className="font-mono text-[10px] font-bold text-ink dark:text-cream mt-1">
+                <span className="font-mono text-xs font-bold text-ink dark:text-cream mt-1">
                   Track Vision ML
                 </span>
               </motion.div>
@@ -138,7 +136,7 @@ export default function HomePage() {
                 title="Voice Assistive Wheelchair"
               >
                 <WheelchairDoodle className="w-16 h-16" />
-                <span className="font-mono text-[10px] font-bold text-ink dark:text-cream mt-1">
+                <span className="font-mono text-xs font-bold text-ink dark:text-cream mt-1">
                   Assistive Mic Unit
                 </span>
               </motion.div>
@@ -151,48 +149,51 @@ export default function HomePage() {
                 title="Buy Me a Chai"
               >
                 <ChaiDoodle className="w-14 h-16" />
-                <span className="font-mono text-[10px] font-bold text-ink dark:text-cream mt-1">
+                <span className="font-mono text-xs font-bold text-ink dark:text-cream mt-1">
                   Cutting Chai
                 </span>
               </motion.div>
             </div>
           </div>
 
-          {/* Hero CTAs */}
+          {/* Hero CTAs - Fix for Issue 1 & Issue 10: Standardized into 3 equal-height, aligned button actions */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ ...springOvershoot, delay: 0.58 }}
             className="flex flex-wrap items-center gap-4 pt-2"
           >
-            {/* Primary Action with magnetic pull */}
+            {/* Primary Action */}
             <MagneticButton
               href="#projects"
               variant="primary"
               isMagnetic={true}
               cursorLabel="view"
-              className="text-base sm:text-lg px-8 py-4"
+              className="text-sm px-6 py-3.5 h-[48px]"
             >
               Explore Projects (3) ↓
             </MagneticButton>
 
+            {/* Secondary Action */}
             <MagneticButton
-              href={`mailto:akshat070906@gmail.com?subject=Portfolio%20Inquiry%20from%20Recruiter`}
+              href="/Akshat_Gupta_Resume.pdf"
+              download={true}
+              variant="secondary"
+              cursorLabel="resume"
+              className="text-sm px-6 py-3.5 h-[48px]"
+            >
+              Download PDF Resume (1-Page)
+            </MagneticButton>
+
+            {/* Tertiary Contact Action */}
+            <MagneticButton
+              href="mailto:akshat070906@gmail.com?subject=Portfolio%20Inquiry%20from%20Recruiter"
               variant="outline"
               cursorLabel="email"
-              className="text-base sm:text-lg px-6 py-4"
+              className="text-sm px-6 py-3.5 h-[48px]"
             >
               Get In Touch →
             </MagneticButton>
-
-            <a
-              href="/Akshat_Gupta_Resume.pdf"
-              download
-              className="font-mono text-sm font-bold text-ink dark:text-cream underline decoration-2 hover:text-tomato transition-colors ml-2 py-2"
-              data-cursor-label="resume"
-            >
-              Download PDF Resume (1-Page)
-            </a>
           </motion.div>
         </div>
       </section>
@@ -200,28 +201,31 @@ export default function HomePage() {
       {/* ===================== FLAGSHIP PROJECTS ===================== */}
       <section id="projects" className="py-16 sm:py-24 border-t-2 border-ink dark:border-cream">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
-          {/* Section Header with Oversized Word */}
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12 relative">
+          {/* Section Header - Fix for Issue 14: Increased vertical separation */}
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10 relative">
             <div>
-              <span className="font-mono text-xs font-black uppercase tracking-wider px-2 py-0.5 bg-tomato text-white border border-ink inline-block mb-3">
+              <span className="font-mono text-xs font-bold px-2 py-0.5 bg-tomato text-white border border-ink inline-block mb-3">
                 Flagship Work
               </span>
-              <h2 className="font-display font-extrabold text-4xl sm:text-6xl text-ink dark:text-cream tracking-tight">
+              <h2 className="font-display font-extrabold text-3xl sm:text-5xl text-ink dark:text-cream tracking-tight">
                 Three real systems.
               </h2>
             </div>
-            {/* Oversized word for contrast */}
-            <span className="font-display font-black text-6xl sm:text-8xl text-ink/10 dark:text-cream/10 select-none pointer-events-none md:self-end">
-              PROOFS
-            </span>
+            {/* Dedicated link to standalone /projects page */}
+            <Link
+              href="/projects"
+              className="font-mono text-xs font-bold text-ink dark:text-cream hover:text-tomato underline self-start md:self-end"
+            >
+              View dedicated projects page →
+            </Link>
           </div>
 
-          <p className="font-body text-lg text-ink/80 dark:text-cream/80 max-w-2xl mb-12">
+          <p className="font-body text-base sm:text-lg text-ink/80 dark:text-cream/80 max-w-2xl mb-10">
             No synthetic practice tutorials. Each project solves an operational problem in the real world, tested with live users, sensors, or hardware telemetry.
           </p>
 
           {/* The Three Projects Cards */}
-          <div className="space-y-12">
+          <div className="space-y-10">
             {/* Project 1: Orange Taxi (Flagship) */}
             <ProjectCard
               slug="orange-taxi"
@@ -269,7 +273,7 @@ export default function HomePage() {
           </div>
 
           {/* Early Work line */}
-          <div className="mt-12">
+          <div className="mt-10">
             <EarlyWorkSection />
           </div>
         </div>
@@ -278,18 +282,21 @@ export default function HomePage() {
       {/* ===================== EXPERIENCE ===================== */}
       <section id="experience" className="py-16 sm:py-24 border-t-2 border-ink dark:border-cream">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
             <div>
-              <span className="font-mono text-xs font-black uppercase tracking-wider px-2 py-0.5 bg-sunny text-ink border border-ink inline-block mb-3">
+              <span className="font-mono text-xs font-bold px-2 py-0.5 bg-sunny text-ink border border-ink inline-block mb-3">
                 Industry Work
               </span>
-              <h2 className="font-display font-extrabold text-4xl sm:text-6xl text-ink dark:text-cream tracking-tight">
+              <h2 className="font-display font-extrabold text-3xl sm:text-5xl text-ink dark:text-cream tracking-tight">
                 Work Experience.
               </h2>
             </div>
-            <span className="font-display font-black text-6xl sm:text-8xl text-ink/10 dark:text-cream/10 select-none pointer-events-none md:self-end">
-              DISPATCH
-            </span>
+            <Link
+              href="/experience"
+              className="font-mono text-xs font-bold text-ink dark:text-cream hover:text-tomato underline self-start md:self-end"
+            >
+              View dedicated experience page →
+            </Link>
           </div>
 
           <ExperienceSection />
@@ -299,21 +306,24 @@ export default function HomePage() {
       {/* ===================== SKILLS INDEX ===================== */}
       <section id="skills" className="py-16 sm:py-24 border-t-2 border-ink dark:border-cream">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
             <div>
-              <span className="font-mono text-xs font-black uppercase tracking-wider px-2 py-0.5 bg-teal text-white border border-ink inline-block mb-3">
+              <span className="font-mono text-xs font-bold px-2 py-0.5 bg-teal text-white border border-ink inline-block mb-3">
                 Capabilities
               </span>
-              <h2 className="font-display font-extrabold text-4xl sm:text-6xl text-ink dark:text-cream tracking-tight">
+              <h2 className="font-display font-extrabold text-3xl sm:text-5xl text-ink dark:text-cream tracking-tight">
                 Technical Index.
               </h2>
             </div>
-            <span className="font-display font-black text-6xl sm:text-8xl text-ink/10 dark:text-cream/10 select-none pointer-events-none md:self-end">
-              INDEX
-            </span>
+            <Link
+              href="/skills"
+              className="font-mono text-xs font-bold text-ink dark:text-cream hover:text-teal underline self-start md:self-end"
+            >
+              View dedicated skills page →
+            </Link>
           </div>
 
-          <p className="font-body text-base sm:text-lg text-ink/80 dark:text-cream/80 max-w-2xl mb-8">
+          <p className="font-body text-base text-ink/80 dark:text-cream/80 max-w-2xl mb-8">
             Grouped cleanly by engineering layer. No fictional percentage progress bars—just tools and languages I write real software with.
           </p>
 
@@ -324,18 +334,21 @@ export default function HomePage() {
       {/* ===================== ABOUT & STICKER PILE ===================== */}
       <section id="about" className="py-16 sm:py-24 border-t-2 border-ink dark:border-cream">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
             <div>
-              <span className="font-mono text-xs font-black uppercase tracking-wider px-2 py-0.5 bg-sunny text-ink border border-ink inline-block mb-3">
+              <span className="font-mono text-xs font-bold px-2 py-0.5 bg-sunny text-ink border border-ink inline-block mb-3">
                 Background &amp; Philosophy
               </span>
-              <h2 className="font-display font-extrabold text-4xl sm:text-6xl text-ink dark:text-cream tracking-tight">
+              <h2 className="font-display font-extrabold text-3xl sm:text-5xl text-ink dark:text-cream tracking-tight">
                 About Akshat.
               </h2>
             </div>
-            <span className="font-display font-black text-6xl sm:text-8xl text-ink/10 dark:text-cream/10 select-none pointer-events-none md:self-end">
-              PERSON
-            </span>
+            <Link
+              href="/about"
+              className="font-mono text-xs font-bold text-ink dark:text-cream hover:text-sunny underline self-start md:self-end"
+            >
+              View dedicated about page →
+            </Link>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
@@ -345,7 +358,7 @@ export default function HomePage() {
                 <h3 className="font-display font-extrabold text-2xl text-ink dark:text-cream mb-4">
                   Engineering with real constraints.
                 </h3>
-                <div className="space-y-4 font-body text-base text-ink/85 dark:text-cream/85 leading-relaxed">
+                <div className="space-y-4 font-body text-base text-ink/80 dark:text-cream/80 leading-relaxed">
                   <p>
                     I am an undergraduate in Computer Science (specializing in <strong>IoT, Cybersecurity &amp; Blockchain</strong>) at BMS College of Engineering, Bengaluru (class of 2028).
                   </p>
@@ -359,11 +372,11 @@ export default function HomePage() {
 
                 <div className="border-t-2 border-ink/20 dark:border-cream/20 mt-6 pt-4 flex flex-wrap gap-4 font-mono text-xs font-bold">
                   <div>
-                    <span className="text-ink/60 dark:text-cream/60 block">EDUCATION</span>
+                    <span className="text-ink/70 dark:text-cream/70 block">Education</span>
                     <span>BMSCE Bengaluru (2024–2028)</span>
                   </div>
                   <div>
-                    <span className="text-ink/60 dark:text-cream/60 block">SPECIALIZATION</span>
+                    <span className="text-ink/70 dark:text-cream/70 block">Specialization</span>
                     <span>IoT, Cyber &amp; Blockchain</span>
                   </div>
                 </div>
@@ -381,18 +394,15 @@ export default function HomePage() {
       {/* ===================== RECOGNITION & CERTIFICATIONS ===================== */}
       <section id="recognition" className="py-16 sm:py-24 border-t-2 border-ink dark:border-cream">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
             <div>
-              <span className="font-mono text-xs font-black uppercase tracking-wider px-2 py-0.5 bg-tomato text-white border border-ink inline-block mb-3">
+              <span className="font-mono text-xs font-bold px-2 py-0.5 bg-tomato text-white border border-ink inline-block mb-3">
                 Validation
               </span>
-              <h2 className="font-display font-extrabold text-4xl sm:text-6xl text-ink dark:text-cream tracking-tight">
+              <h2 className="font-display font-extrabold text-3xl sm:text-5xl text-ink dark:text-cream tracking-tight">
                 Recognition.
               </h2>
             </div>
-            <span className="font-display font-black text-6xl sm:text-8xl text-ink/10 dark:text-cream/10 select-none pointer-events-none md:self-end">
-              HONORS
-            </span>
           </div>
 
           <RecognitionSection />

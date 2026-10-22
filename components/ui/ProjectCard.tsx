@@ -41,12 +41,6 @@ export function ProjectCard({
     teal: "bg-teal text-white",
   }[accentColor];
 
-  const accentPill = {
-    tomato: "border-tomato text-tomato bg-tomato/10",
-    sunny: "border-ink text-ink bg-sunny",
-    teal: "border-teal text-teal bg-teal/10",
-  }[accentColor];
-
   return (
     <motion.div
       initial={{ rotate: initialRotation }}
@@ -85,16 +79,16 @@ export function ProjectCard({
               /{number}
             </span>
             <span
-              className={`font-mono text-xs font-bold uppercase tracking-wider px-2 py-0.5 border border-ink ${accentBg}`}
+              className={`font-mono text-xs font-bold px-2.5 py-0.5 border border-ink ${accentBg}`}
             >
               {category}
             </span>
           </div>
 
           {liveUrl && (
-            <span className="font-mono text-xs font-bold text-teal flex items-center gap-1">
+            <span className="font-mono text-xs font-bold text-teal flex items-center gap-1.5">
               <span className="w-2 h-2 rounded-full bg-teal animate-pulse" />
-              LIVE
+              Live Deployment
             </span>
           )}
         </div>
@@ -119,16 +113,16 @@ export function ProjectCard({
         </p>
 
         {/* Core Contribution Highlight */}
-        <div className="bg-cream/50 dark:bg-[#252525] border-l-4 border-ink dark:border-cream p-3 mb-6">
+        <div className="bg-cream/50 dark:bg-[#252525] border-l-4 border-ink dark:border-cream p-3.5 mb-6">
           <p className="font-mono text-xs text-ink dark:text-cream leading-normal">
-            <strong className="text-tomato uppercase mr-1">Built:</strong>
+            <strong className="text-tomato mr-1.5">Built:</strong>
             {highlight}
           </p>
         </div>
 
-        {/* Tech Stack Chips (peel reveals detail) */}
+        {/* Tech Stack Chips */}
         <div>
-          <p className="font-mono text-[11px] uppercase tracking-wider text-ink/60 dark:text-cream/60 mb-2 font-bold">
+          <p className="font-mono text-xs font-bold text-ink/70 dark:text-cream/70 mb-2">
             Stack:
           </p>
           <div className="flex flex-wrap gap-1.5">
@@ -148,16 +142,16 @@ export function ProjectCard({
       <div className="border-t-2 border-ink dark:border-cream p-4 sm:px-8 bg-cream/30 dark:bg-[#181818] flex items-center justify-between">
         <Link
           href={`/projects/${slug}`}
-          className="font-mono text-sm font-black text-ink dark:text-cream flex items-center gap-2 hover:text-tomato transition-colors group"
+          className="font-mono text-sm font-bold text-ink dark:text-cream flex items-center gap-2 hover:text-tomato transition-colors group"
           data-cursor-label="read"
         >
-          <span>READ CASE STUDY</span>
+          <span>Read case study</span>
           <span className="group-hover:translate-x-1 transition-transform">
             →
           </span>
         </Link>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-4">
           {repoUrl && (
             <a
               href={repoUrl}

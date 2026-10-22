@@ -12,7 +12,7 @@ export function ExperienceSection() {
         <div className="flex flex-col md:flex-row md:items-start justify-between gap-4 border-b-2 border-ink/20 dark:border-cream/20 pb-6 mb-6">
           <div>
             <div className="flex flex-wrap items-center gap-2 mb-2">
-              <span className="font-mono text-xs font-black uppercase tracking-wider px-2.5 py-0.5 bg-tomato text-white border border-ink">
+              <span className="font-mono text-xs font-bold px-2.5 py-0.5 bg-tomato text-white border border-ink">
                 Internship
               </span>
               <span className="font-mono text-xs font-bold text-ink/70 dark:text-cream/70">
@@ -40,8 +40,8 @@ export function ExperienceSection() {
           </p>
 
           <div className="bg-cream dark:bg-[#151515] border-2 border-ink dark:border-[#333333] p-4 sm:p-5">
-            <h4 className="font-mono text-xs font-bold uppercase tracking-wider text-ink dark:text-cream mb-2">
-              Key Engineering Delivered:
+            <h4 className="font-mono text-xs font-bold text-ink dark:text-cream mb-2">
+              Key engineering delivered:
             </h4>
             <ul className="space-y-2 font-body text-sm sm:text-base text-ink dark:text-cream list-disc list-inside">
               <li>
@@ -61,7 +61,7 @@ export function ExperienceSection() {
               (tag) => (
                 <span
                   key={tag}
-                  className="font-mono text-xs font-bold px-2 py-0.5 border border-ink bg-white dark:bg-ink text-ink dark:text-cream"
+                  className="font-mono text-xs font-bold px-2.5 py-0.5 border border-ink bg-white dark:bg-ink text-ink dark:text-cream"
                 >
                   {tag}
                 </span>
@@ -87,10 +87,10 @@ export function RecognitionSection() {
         <div>
           <div className="flex items-center justify-between pb-4 border-b-2 border-ink/20 dark:border-cream/20 mb-4">
             <h3 className="font-display font-extrabold text-xl text-ink dark:text-cream tracking-tight">
-              Honors & Awards
+              Honors &amp; Awards
             </h3>
-            <span className="font-mono text-xs font-black px-2 py-0.5 bg-sunny text-ink border border-ink">
-              MERIT
+            <span className="font-mono text-xs font-bold px-2 py-0.5 bg-sunny text-ink border border-ink">
+              Merit
             </span>
           </div>
 
@@ -100,7 +100,7 @@ export function RecognitionSection() {
                 <WheelchairDoodle className="w-12 h-12" />
               </div>
               <div>
-                <span className="font-mono text-[11px] font-bold text-tomato uppercase">
+                <span className="font-mono text-xs font-bold text-tomato block mb-0.5">
                   National Exhibition Award (Rs 10,000)
                 </span>
                 <h4 className="font-display font-bold text-base text-ink dark:text-cream leading-snug">
@@ -113,7 +113,7 @@ export function RecognitionSection() {
             </div>
 
             <div className="border-t border-ink/10 dark:border-cream/10 pt-4">
-              <span className="font-mono text-[11px] font-bold text-teal uppercase">
+              <span className="font-mono text-xs font-bold text-teal block mb-0.5">
                 State Level Podium
               </span>
               <h4 className="font-display font-bold text-base text-ink dark:text-cream leading-snug">
@@ -125,7 +125,7 @@ export function RecognitionSection() {
             </div>
 
             <div className="border-t border-ink/10 dark:border-cream/10 pt-4">
-              <span className="font-mono text-[11px] font-bold text-ink/70 dark:text-cream/70 uppercase">
+              <span className="font-mono text-xs font-bold text-ink/70 dark:text-cream/70 block mb-0.5">
                 Olympiad
               </span>
               <h4 className="font-display font-bold text-base text-ink dark:text-cream leading-snug">
@@ -150,15 +150,15 @@ export function RecognitionSection() {
         <div>
           <div className="flex items-center justify-between pb-4 border-b-2 border-ink/20 dark:border-cream/20 mb-4">
             <h3 className="font-display font-extrabold text-xl text-ink dark:text-cream tracking-tight">
-              Certifications & Fields
+              Certifications &amp; Fields
             </h3>
-            <span className="font-mono text-xs font-black px-2 py-0.5 bg-teal text-white border border-ink">
-              VERIFIED
+            <span className="font-mono text-xs font-bold px-2 py-0.5 bg-teal text-white border border-ink">
+              Verified
             </span>
           </div>
 
           <div className="mb-6">
-            <h4 className="font-mono text-xs font-bold uppercase tracking-wider text-ink/60 dark:text-cream/60 mb-3">
+            <h4 className="font-mono text-xs font-bold text-ink/70 dark:text-cream/70 mb-3">
               Technical Certifications
             </h4>
             <div className="space-y-2">
@@ -175,7 +175,7 @@ export function RecognitionSection() {
                   <span className="font-display font-bold text-xs sm:text-sm text-ink dark:text-cream">
                     {cert.name}
                   </span>
-                  <span className="font-mono text-[10px] text-ink/60 dark:text-cream/60">
+                  <span className="font-mono text-xs text-ink/70 dark:text-cream/70">
                     {cert.issuer}
                   </span>
                 </div>
@@ -184,8 +184,8 @@ export function RecognitionSection() {
           </div>
 
           <div>
-            <h4 className="font-mono text-xs font-bold uppercase tracking-wider text-ink/60 dark:text-cream/60 mb-2">
-              Research & Technical Interests
+            <h4 className="font-mono text-xs font-bold text-ink/70 dark:text-cream/70 mb-2">
+              Research &amp; Technical Interests
             </h4>
             <div className="flex flex-wrap gap-1.5">
               {[
@@ -217,10 +217,10 @@ export function EarlyWorkSection() {
       <div className="flex items-center gap-4">
         <ChaiDoodle className="w-14 h-14 flex-shrink-0" />
         <div>
-          <span className="font-mono text-[10px] font-black tracking-wider uppercase px-2 py-0.5 bg-ink text-cream">
-            EARLY EXPERIMENTS
+          <span className="font-mono text-xs font-bold px-2 py-0.5 bg-ink text-cream inline-block mb-1">
+            Early Experiments
           </span>
-          <p className="font-body text-sm sm:text-base text-ink dark:text-cream mt-1 font-medium">
+          <p className="font-body text-sm sm:text-base text-ink dark:text-cream font-medium">
             Early exploratory builds: <strong>Airbnb clone</strong> and <strong>Buy Me a Coffee clone</strong> (pure HTML, CSS, JavaScript).
           </p>
         </div>

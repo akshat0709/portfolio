@@ -25,7 +25,7 @@ const initialStickers: Sticker[] = [
     initialX: 20,
     initialY: 20,
     initialRotate: -3,
-    badge: "BENGALURU",
+    badge: "Bengaluru",
   },
   {
     id: "s2",
@@ -36,51 +36,51 @@ const initialStickers: Sticker[] = [
     initialX: 90,
     initialY: 45,
     initialRotate: 2,
-    badge: "ACADEMICS",
+    badge: "Academics",
   },
   {
     id: "s3",
-    title: "REALTIME EV DISPATCH",
+    title: "Realtime EV Dispatch",
     subtitle: "Supabase Realtime & PWA Fleet Engine",
     color: "#FF4336", // Tomato Red
     textColor: "#FFFFFF",
     initialX: 40,
     initialY: 100,
     initialRotate: -2,
-    badge: "ORANGE TAXI",
+    badge: "Orange Taxi",
   },
   {
     id: "s4",
-    title: "INSPIRE AWARDEE",
+    title: "INSPIRE Awardee",
     subtitle: "National Science Exhibition (Rs 10,000)",
     color: "#179A94", // Teal
     textColor: "#FFFFFF",
     initialX: 130,
     initialY: 140,
     initialRotate: 4,
-    badge: "RECOGNITION",
+    badge: "Recognition",
   },
   {
     id: "s5",
-    title: "ZERO BUZZWORDS",
+    title: "Zero Buzzwords",
     subtitle: "'innovative', 'passionate': 404 not found",
     color: "#FFF6E5",
     textColor: "#1A1A1A",
     initialX: 25,
     initialY: 190,
     initialRotate: -4,
-    badge: "PRINCIPLE",
+    badge: "Principle",
   },
   {
     id: "s6",
-    title: "GPS-DENIED ROVER",
+    title: "GPS-Denied Rover",
     subtitle: "Autonomous disaster search & rescue",
     color: "#FFD13B",
     textColor: "#1A1A1A",
     initialX: 110,
     initialY: 230,
     initialRotate: 1,
-    badge: "ROBOTICS",
+    badge: "Robotics",
   },
 ];
 
@@ -117,8 +117,8 @@ export function StickerPile() {
           <span className="w-3 h-3 rounded-full bg-tomato border border-ink" />
           <span className="w-3 h-3 rounded-full bg-sunny border border-ink" />
           <span className="w-3 h-3 rounded-full bg-teal border border-ink" />
-          <span className="font-mono text-xs font-bold uppercase tracking-wider text-ink dark:text-cream ml-2">
-            Interactive Sticker Pile (Try dragging!)
+          <span className="font-mono text-xs font-bold text-ink dark:text-cream ml-2">
+            Interactive Sticker Pile (Try dragging)
           </span>
         </div>
         <button
@@ -135,8 +135,8 @@ export function StickerPile() {
         key={resetKey}
         className="relative w-full h-[360px] sm:h-[380px] bg-cream dark:bg-[#151515] border-2 border-dashed border-ink/40 dark:border-cream/30 overflow-hidden select-none"
       >
-        <p className="absolute bottom-3 right-4 font-mono text-[11px] text-ink/40 dark:text-cream/40 pointer-events-none uppercase tracking-wider">
-          grab & toss stickers freely
+        <p className="absolute bottom-3 right-4 font-mono text-xs text-ink/70 dark:text-cream/70 pointer-events-none tracking-wide">
+          Grab and toss stickers freely
         </p>
 
         {initialStickers.map((sticker) => {
@@ -144,6 +144,8 @@ export function StickerPile() {
           return (
             <motion.div
               key={sticker.id}
+              role="region"
+              aria-label={`Interactive draggable sticker: ${sticker.title}`}
               drag={!reducedMotion}
               dragConstraints={{
                 top: -10,
@@ -163,7 +165,7 @@ export function StickerPile() {
                 y: sticker.initialY,
                 rotate: sticker.initialRotate,
               }}
-              className="absolute cursor-grab active:cursor-grabbing max-w-[280px] sm:max-w-[310px] p-4 border-2 border-ink shadow-hard select-none"
+              className="absolute cursor-grab active:cursor-grabbing hover:-translate-y-0.5 hover:shadow-hard-lg transition-shadow max-w-[280px] sm:max-w-[310px] p-4 border-2 border-ink shadow-hard select-none"
               style={{
                 backgroundColor: sticker.color,
                 color: sticker.textColor,
@@ -171,20 +173,22 @@ export function StickerPile() {
               }}
               data-cursor-label="drag"
             >
-              <div className="flex items-center justify-between gap-2 mb-1.5">
+              <div className="flex items-center justify-between gap-2 mb-2">
                 {sticker.badge && (
-                  <span className="font-mono text-[10px] font-black uppercase tracking-widest px-1.5 py-0.5 border border-ink bg-white/70 text-ink">
+                  <span className="font-mono text-xs font-bold px-2 py-0.5 border border-ink bg-white/80 text-ink">
                     {sticker.badge}
                   </span>
                 )}
-                <span className="font-mono text-[10px] opacity-70">
-                  #{sticker.id}
+                {/* Visual affordance grab indicator */}
+                <span className="font-mono text-xs font-bold px-1.5 py-0.5 bg-ink/10 text-ink border border-ink/30 flex items-center gap-1">
+                  <span>⠿</span>
+                  <span>Drag</span>
                 </span>
               </div>
               <h4 className="font-display font-extrabold text-base tracking-tight leading-tight">
                 {sticker.title}
               </h4>
-              <p className="font-mono text-xs opacity-90 mt-1 leading-snug">
+              <p className="font-mono text-xs text-ink/80 dark:text-cream/80 mt-1 leading-snug">
                 {sticker.subtitle}
               </p>
             </motion.div>

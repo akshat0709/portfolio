@@ -12,22 +12,22 @@ export default function AnimalDetectionCaseStudy() {
         {/* Back Link */}
         <div className="mb-8">
           <Link
-            href="/#projects"
+            href="/projects"
             className="inline-flex items-center gap-2 font-mono text-sm font-bold text-ink dark:text-cream hover:text-tomato transition-colors group"
             data-cursor-label="back"
           >
             <span className="group-hover:-translate-x-1 transition-transform">←</span>
-            <span>Back to all projects</span>
+            <span>Back to projects</span>
           </Link>
         </div>
 
         {/* Case Study Header */}
         <header className="border-2 border-ink dark:border-cream bg-white dark:bg-[#1E1E1E] p-6 sm:p-10 shadow-hard-lg dark:shadow-hard-dark-lg mb-10">
           <div className="flex flex-wrap items-center gap-2 mb-4">
-            <span className="font-mono text-xs font-black uppercase px-2.5 py-0.5 bg-tomato text-white border border-ink">
+            <span className="font-mono text-xs font-bold px-2.5 py-0.5 bg-tomato text-white border border-ink">
               AI / Computer Vision
             </span>
-            <span className="font-mono text-xs font-bold uppercase px-2.5 py-0.5 bg-cream dark:bg-ink text-ink dark:text-cream border border-ink dark:border-cream">
+            <span className="font-mono text-xs font-bold px-2.5 py-0.5 bg-cream dark:bg-ink text-ink dark:text-cream border border-ink dark:border-cream">
               Low-Latency Inference
             </span>
           </div>
@@ -60,7 +60,7 @@ export default function AnimalDetectionCaseStudy() {
         {/* Project Meta Grid */}
         <section className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-12">
           <div className="p-4 border-2 border-ink dark:border-cream bg-cream dark:bg-[#181818] shadow-hard-sm">
-            <span className="font-mono text-[11px] font-bold uppercase text-ink/60 dark:text-cream/60 block mb-1">
+            <span className="font-mono text-xs font-bold text-ink/70 dark:text-cream/70 block mb-1">
               Objective
             </span>
             <span className="font-display font-bold text-sm text-ink dark:text-cream">
@@ -69,7 +69,7 @@ export default function AnimalDetectionCaseStudy() {
           </div>
 
           <div className="p-4 border-2 border-ink dark:border-cream bg-cream dark:bg-[#181818] shadow-hard-sm">
-            <span className="font-mono text-[11px] font-bold uppercase text-ink/60 dark:text-cream/60 block mb-1">
+            <span className="font-mono text-xs font-bold text-ink/70 dark:text-cream/70 block mb-1">
               Input Stream
             </span>
             <span className="font-display font-bold text-sm text-ink dark:text-cream">
@@ -78,7 +78,7 @@ export default function AnimalDetectionCaseStudy() {
           </div>
 
           <div className="p-4 border-2 border-ink dark:border-cream bg-cream dark:bg-[#181818] shadow-hard-sm">
-            <span className="font-mono text-[11px] font-bold uppercase text-ink/60 dark:text-cream/60 block mb-1">
+            <span className="font-mono text-xs font-bold text-ink/70 dark:text-cream/70 block mb-1">
               Inference Mode
             </span>
             <span className="font-display font-bold text-sm text-ink dark:text-cream">
@@ -87,7 +87,7 @@ export default function AnimalDetectionCaseStudy() {
           </div>
 
           <div className="p-4 border-2 border-ink dark:border-cream bg-cream dark:bg-[#181818] shadow-hard-sm">
-            <span className="font-mono text-[11px] font-bold uppercase text-ink/60 dark:text-cream/60 block mb-1">
+            <span className="font-mono text-xs font-bold text-ink/70 dark:text-cream/70 block mb-1">
               Action Trigger
             </span>
             <span className="font-display font-bold text-sm text-ink dark:text-cream">
@@ -99,13 +99,13 @@ export default function AnimalDetectionCaseStudy() {
         {/* Visual Doodle Banner */}
         <div className="border-2 border-ink dark:border-cream bg-tomato/10 dark:bg-[#151515] p-8 mb-12 flex flex-col items-center justify-center">
           <TrainDoodle className="w-52 h-32" />
-          <span className="font-mono text-xs font-bold text-ink dark:text-cream mt-2 uppercase tracking-wider">
+          <span className="font-mono text-xs font-bold text-ink dark:text-cream mt-2 tracking-wide">
             Railway Corridor Real-Time Vision Scanner
           </span>
         </div>
 
         {/* Content Section 1: Problem Statement */}
-        <section className="space-y-6 mb-12 font-body text-base sm:text-lg text-ink/90 dark:text-cream/90 leading-relaxed">
+        <section className="space-y-6 mb-12 font-body text-base sm:text-lg text-ink/80 dark:text-cream/80 leading-relaxed">
           <h2 className="font-display font-extrabold text-2xl sm:text-3xl text-ink dark:text-cream tracking-tight border-b-2 border-ink/20 pb-3">
             01. Wildlife Safety on Heavy Rail Corridors
           </h2>
@@ -118,7 +118,7 @@ export default function AnimalDetectionCaseStudy() {
 
           {/* Placeholder 1 */}
           <div className="border-2 border-dashed border-ink dark:border-cream bg-cream dark:bg-[#1C1C1C] p-8 text-center my-8">
-            <span className="font-mono text-xs font-black px-2 py-1 bg-tomato text-white uppercase inline-block mb-2">
+            <span className="font-mono text-xs font-bold px-2 py-1 bg-tomato text-white inline-block mb-2">
               [SCREENSHOT: Model Inference &amp; Track Bounding Boxes]
             </span>
             <p className="font-mono text-xs text-ink/70 dark:text-cream/70 max-w-md mx-auto">
@@ -128,7 +128,7 @@ export default function AnimalDetectionCaseStudy() {
         </section>
 
         {/* Content Section 2: Pipeline & Low Latency */}
-        <section className="space-y-6 mb-12 font-body text-base sm:text-lg text-ink/90 dark:text-cream/90 leading-relaxed">
+        <section className="space-y-6 mb-12 font-body text-base sm:text-lg text-ink/80 dark:text-cream/80 leading-relaxed">
           <h2 className="font-display font-extrabold text-2xl sm:text-3xl text-ink dark:text-cream tracking-tight border-b-2 border-ink/20 pb-3">
             02. Computer Vision Pipeline &amp; Region of Interest (ROI)
           </h2>
@@ -137,7 +137,7 @@ export default function AnimalDetectionCaseStudy() {
           </p>
           <div className="bg-white dark:bg-[#1E1E1E] border-2 border-ink dark:border-cream p-6 shadow-hard-sm space-y-4">
             <div>
-              <h3 className="font-mono text-sm font-bold text-tomato uppercase mb-1">
+              <h3 className="font-mono text-xs font-bold text-tomato mb-1">
                 Corridor Track Masking
               </h3>
               <p className="text-sm sm:text-base">
@@ -145,7 +145,7 @@ export default function AnimalDetectionCaseStudy() {
               </p>
             </div>
             <div className="border-t border-ink/15 dark:border-cream/15 pt-3">
-              <h3 className="font-mono text-sm font-bold text-teal uppercase mb-1">
+              <h3 className="font-mono text-xs font-bold text-teal mb-1">
                 Temporal Consistency Filter
               </h3>
               <p className="text-sm sm:text-base">
@@ -156,7 +156,7 @@ export default function AnimalDetectionCaseStudy() {
 
           {/* Placeholder 2 */}
           <div className="border-2 border-dashed border-ink dark:border-cream bg-cream dark:bg-[#1C1C1C] p-8 text-center my-8">
-            <span className="font-mono text-xs font-black px-2 py-1 bg-sunny text-ink border border-ink uppercase inline-block mb-2">
+            <span className="font-mono text-xs font-bold px-2 py-1 bg-sunny text-ink border border-ink inline-block mb-2">
               [PHOTO: Field Testing Setup or Simulation]
             </span>
             <p className="font-mono text-xs text-ink/70 dark:text-cream/70 max-w-md mx-auto">
@@ -166,7 +166,7 @@ export default function AnimalDetectionCaseStudy() {
         </section>
 
         {/* Content Section 3: Alert System */}
-        <section className="space-y-6 mb-12 font-body text-base sm:text-lg text-ink/90 dark:text-cream/90 leading-relaxed">
+        <section className="space-y-6 mb-12 font-body text-base sm:text-lg text-ink/80 dark:text-cream/80 leading-relaxed">
           <h2 className="font-display font-extrabold text-2xl sm:text-3xl text-ink dark:text-cream tracking-tight border-b-2 border-ink/20 pb-3">
             03. Real-Time Operator Alert Escalation
           </h2>
@@ -175,7 +175,7 @@ export default function AnimalDetectionCaseStudy() {
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="p-5 border-2 border-ink dark:border-cream bg-white dark:bg-[#1E1E1E]">
-              <h4 className="font-mono text-xs font-bold uppercase text-tomato mb-2">
+              <h4 className="font-mono text-xs font-bold text-tomato mb-2">
                 Level 1: Audible Pilot Alarm
               </h4>
               <p className="text-sm">
@@ -183,7 +183,7 @@ export default function AnimalDetectionCaseStudy() {
               </p>
             </div>
             <div className="p-5 border-2 border-ink dark:border-cream bg-white dark:bg-[#1E1E1E]">
-              <h4 className="font-mono text-xs font-bold uppercase text-teal mb-2">
+              <h4 className="font-mono text-xs font-bold text-teal mb-2">
                 Level 2: Telemetry Event Log
               </h4>
               <p className="text-sm">
@@ -202,7 +202,7 @@ export default function AnimalDetectionCaseStudy() {
             ← Previous: Autonomous Rescue Robot
           </Link>
           <Link
-            href="/#projects"
+            href="/projects"
             className="font-mono text-sm font-bold text-ink dark:text-cream hover:text-tomato flex items-center gap-2 group"
           >
             <span>Back to All Projects</span>
