@@ -57,26 +57,48 @@ html.dark ::-webkit-scrollbar-thumb {
   border: 2px solid #121212;
 }
 
-/* Highlighter mark effect */
+/* Solid Indie Zine Highlighter Mark Effect - 100% Contrast & Legibility */
 .highlight-yellow {
-  background-image: linear-gradient(120deg, rgba(255, 209, 59, 0.9) 0%, rgba(255, 209, 59, 0.9) 100%);
-  background-repeat: no-repeat;
-  background-size: 100% 40%;
-  background-position: 0 88%;
+  background-color: #FFD13B;
+  color: #1A1A1A !important;
+  padding: 0.1rem 0.45rem;
+  font-weight: 800;
+  display: inline-block;
+  border: 2px solid #1A1A1A;
+  box-shadow: 2px 2px 0px #1A1A1A;
+  transform: rotate(-1deg);
+  line-height: 1.25;
+}
+
+html.dark .highlight-yellow {
+  background-color: #FFD13B;
+  color: #1A1A1A !important;
+  border: 2px solid #1A1A1A;
+  box-shadow: 2px 2px 0px #FFF6E5;
 }
 
 .highlight-red {
-  background-image: linear-gradient(120deg, rgba(255, 67, 54, 0.3) 0%, rgba(255, 67, 54, 0.3) 100%);
-  background-repeat: no-repeat;
-  background-size: 100% 40%;
-  background-position: 0 88%;
+  background-color: #FF4336;
+  color: #FFFFFF !important;
+  padding: 0.1rem 0.45rem;
+  font-weight: 800;
+  display: inline-block;
+  border: 2px solid #1A1A1A;
+  box-shadow: 2px 2px 0px #1A1A1A;
+  transform: rotate(1deg);
+  line-height: 1.25;
 }
 
 .highlight-teal {
-  background-image: linear-gradient(120deg, rgba(23, 154, 148, 0.3) 0%, rgba(23, 154, 148, 0.3) 100%);
-  background-repeat: no-repeat;
-  background-size: 100% 40%;
-  background-position: 0 88%;
+  background-color: #179A94;
+  color: #FFFFFF !important;
+  padding: 0.1rem 0.45rem;
+  font-weight: 800;
+  display: inline-block;
+  border: 2px solid #1A1A1A;
+  box-shadow: 2px 2px 0px #1A1A1A;
+  transform: rotate(-1deg);
+  line-height: 1.25;
 }
 
 /* Reduced motion accessibility */

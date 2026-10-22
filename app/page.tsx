@@ -116,7 +116,9 @@ export default function HomePage() {
             >
               <p className="font-display font-bold text-2xl sm:text-3xl text-ink dark:text-cream leading-tight mb-4">
                 Full-stack developer and CS undergrad who{" "}
-                <span className="highlight-yellow px-1 text-ink">builds real systems</span>
+                <span className="highlight-yellow mx-1">
+                  builds real systems
+                </span>{" "}
                 —from a live electric ride-hailing platform to an autonomous rescue robot.
               </p>
 
