@@ -1,0 +1,92 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-display: "Space Grotesk", system-ui, -apple-system, sans-serif;
+  --font-body: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", Menlo, Monaco, Consolas, monospace;
+  --bg-cream: #FFF6E5;
+  --color-ink: #1A1A1A;
+}
+
+/* Custom Base Styles */
+html {
+  scroll-behavior: smooth;
+  background-color: #FFF6E5;
+  color: #1A1A1A;
+}
+
+html.dark {
+  background-color: #121212;
+  color: #FFF6E5;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Selection */
+::selection {
+  background-color: #FFD13B;
+  color: #1A1A1A;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #FFF6E5;
+  border-left: 2px solid #1A1A1A;
+}
+html.dark ::-webkit-scrollbar-track {
+  background: #121212;
+  border-left: 2px solid #333333;
+}
+::-webkit-scrollbar-thumb {
+  background: #1A1A1A;
+  border: 2px solid #FFF6E5;
+}
+html.dark ::-webkit-scrollbar-thumb {
+  background: #FFF6E5;
+  border: 2px solid #121212;
+}
+
+/* Highlighter mark effect */
+.highlight-yellow {
+  background-image: linear-gradient(120deg, rgba(255, 209, 59, 0.9) 0%, rgba(255, 209, 59, 0.9) 100%);
+  background-repeat: no-repeat;
+  background-size: 100% 40%;
+  background-position: 0 88%;
+}
+
+.highlight-red {
+  background-image: linear-gradient(120deg, rgba(255, 67, 54, 0.3) 0%, rgba(255, 67, 54, 0.3) 100%);
+  background-repeat: no-repeat;
+  background-size: 100% 40%;
+  background-position: 0 88%;
+}
+
+.highlight-teal {
+  background-image: linear-gradient(120deg, rgba(23, 154, 148, 0.3) 0%, rgba(23, 154, 148, 0.3) 100%);
+  background-repeat: no-repeat;
+  background-size: 100% 40%;
+  background-position: 0 88%;
+}
+
+/* Reduced motion accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
