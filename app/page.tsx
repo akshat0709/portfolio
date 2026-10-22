@@ -8,14 +8,6 @@ import { RobotDoodle } from "@/components/doodles/RobotDoodle";
 import { TrainDoodle } from "@/components/doodles/TrainDoodle";
 import { WheelchairDoodle } from "@/components/doodles/WheelchairDoodle";
 import { ChaiDoodle } from "@/components/doodles/ChaiDoodle";
-import { ProjectCard } from "@/components/ui/ProjectCard";
-import { SkillsIndex } from "@/components/ui/SkillsIndex";
-import { StickerPile } from "@/components/ui/StickerPile";
-import {
-  ExperienceSection,
-  RecognitionSection,
-  EarlyWorkSection,
-} from "@/components/ui/ExperienceAndRecognition";
 import { ContactSection } from "@/components/ui/Footer";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 
@@ -26,12 +18,63 @@ const springOvershoot = {
 };
 
 export default function HomePage() {
+  const sections = [
+    {
+      num: "01",
+      title: "Projects & Systems",
+      subtitle: "3 real engineering systems with dedicated case studies",
+      description:
+        "Full-stack electric ride-hailing PWA (Orange Taxi), GPS-denied autonomous disaster rescue rover, and low-latency locomotive vision ML.",
+      badge: "Flagship Work",
+      color: "#FFD13B", // sunny
+      href: "/projects",
+      cta: "Explore Case Studies",
+      icon: <TaxiDoodle className="w-16 h-12" />,
+    },
+    {
+      num: "02",
+      title: "Technical Index",
+      subtitle: "Languages, systems, cybersecurity & embedded layers",
+      description:
+        "Verified skills grouped by architectural tier with zero progress bars: TypeScript, React, Supabase, PostgreSQL, C/C++, Kali Linux, and IoT microcontrollers.",
+      badge: "Capabilities",
+      color: "#179A94", // teal
+      href: "/skills",
+      cta: "View Tech Stack",
+      icon: <RobotDoodle className="w-14 h-14" />,
+    },
+    {
+      num: "03",
+      title: "Experience & Honors",
+      subtitle: "Production internship & national-level engineering awards",
+      description:
+        "Full-Stack Developer Intern at Orange Taxi (Delhi NCR) plus INSPIRE Award (Rs 10,000) at the National Science Exhibition for an assistive wheelchair.",
+      badge: "Industry & Merit",
+      color: "#FF4336", // tomato
+      href: "/experience",
+      cta: "View Timeline & Honors",
+      icon: <WheelchairDoodle className="w-14 h-14" />,
+    },
+    {
+      num: "04",
+      title: "About Akshat",
+      subtitle: "CS undergrad at BMSCE Bengaluru (CGPA 8.97)",
+      description:
+        "Specializing in IoT, Cybersecurity & Blockchain (class of 2028). Engineering philosophy, academics, and an interactive draggable sticker studio.",
+      badge: "Bio & Studio",
+      color: "#FFF6E5",
+      href: "/about",
+      cta: "Read Background",
+      icon: <ChaiDoodle className="w-12 h-12" />,
+    },
+  ];
+
   return (
     <main className="min-h-screen pt-24 sm:pt-28 pb-16 selection:bg-sunny">
       {/* ===================== HERO SECTION ===================== */}
-      <section id="hero" className="relative px-4 sm:px-6 pt-6 sm:pt-10 pb-16 sm:pb-24 overflow-hidden">
+      <section id="hero" className="relative px-4 sm:px-6 pt-6 sm:pt-10 pb-16 sm:pb-20 overflow-hidden">
         <div className="max-w-5xl mx-auto">
-          {/* Top Status Strip - Fix for Issue 4: removed uppercase from 39-char phrase */}
+          {/* Top Status Strip */}
           <motion.div
             initial={{ opacity: 0, y: -12 }}
             animate={{ opacity: 1, y: 0 }}
@@ -50,7 +93,7 @@ export default function HomePage() {
             </span>
           </motion.div>
 
-          {/* Hero Name & Oversized Statement - Fix for Issue 14: adjusted watermark position and opacity */}
+          {/* Hero Name & Oversized Statement */}
           <div className="relative">
             <div className="select-none pointer-events-none opacity-[0.03] dark:opacity-[0.05] absolute -top-16 -left-6 sm:-left-10 font-display font-black text-7xl sm:text-9xl text-ink dark:text-cream">
               BUILDER
@@ -83,7 +126,7 @@ export default function HomePage() {
             </motion.div>
           </div>
 
-          {/* Doodles popping in one by one - Fix for Issue 5: font-mono text-xs in sentence case */}
+          {/* Doodles popping in one by one */}
           <div className="relative my-6 py-6 border-y-2 border-ink/20 dark:border-cream/20 bg-cream/40 dark:bg-[#181818]">
             <p className="font-mono text-xs font-bold text-ink/70 dark:text-cream/70 mb-3 px-2">
               Bespoke artifacts from real projects:
@@ -156,7 +199,7 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Hero CTAs - Fix for Issue 1 & Issue 10: Standardized into 3 equal-height, aligned button actions */}
+          {/* Hero CTAs */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
@@ -165,7 +208,7 @@ export default function HomePage() {
           >
             {/* Primary Action */}
             <MagneticButton
-              href="#projects"
+              href="/projects"
               variant="primary"
               isMagnetic={true}
               cursorLabel="view"
@@ -198,214 +241,96 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ===================== FLAGSHIP PROJECTS ===================== */}
-      <section id="projects" className="py-16 sm:py-24 border-t-2 border-ink dark:border-cream">
+      {/* ===================== PORTFOLIO INDEX HUB ===================== */}
+      <section className="py-12 sm:py-16 border-t-2 border-ink dark:border-cream">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
-          {/* Section Header - Fix for Issue 14: Increased vertical separation */}
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10 relative">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-8">
             <div>
-              <span className="font-mono text-xs font-bold px-2 py-0.5 bg-tomato text-white border border-ink inline-block mb-3">
-                Flagship Work
+              <span className="font-mono text-xs font-bold px-2 py-0.5 bg-tomato text-white border border-ink inline-block mb-2">
+                Site Index
               </span>
-              <h2 className="font-display font-extrabold text-3xl sm:text-5xl text-ink dark:text-cream tracking-tight">
-                Three real systems.
+              <h2 className="font-display font-extrabold text-3xl sm:text-4xl text-ink dark:text-cream tracking-tight">
+                Where would you like to start?
               </h2>
             </div>
-            {/* Dedicated link to standalone /projects page */}
-            <Link
-              href="/projects"
-              className="font-mono text-xs font-bold text-ink dark:text-cream hover:text-tomato underline self-start md:self-end"
-            >
-              View dedicated projects page →
-            </Link>
+            <p className="font-mono text-xs text-ink/70 dark:text-cream/70">
+              4 dedicated sections · 60-second summary
+            </p>
           </div>
 
-          <p className="font-body text-base sm:text-lg text-ink/80 dark:text-cream/80 max-w-2xl mb-10">
-            No synthetic practice tutorials. Each project solves an operational problem in the real world, tested with live users, sensors, or hardware telemetry.
-          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {sections.map((sec, idx) => (
+              <motion.div
+                key={sec.num}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{
+                  type: "spring",
+                  stiffness: 350,
+                  damping: 25,
+                  delay: idx * 0.08,
+                }}
+                className="border-2 border-ink dark:border-cream bg-white dark:bg-[#1E1E1E] shadow-hard dark:shadow-hard-dark p-6 flex flex-col justify-between hover:-translate-y-1 hover:shadow-hard-lg transition-all group"
+              >
+                <div>
+                  <div className="flex items-center justify-between pb-3 border-b-2 border-ink/15 dark:border-cream/15 mb-4">
+                    <div className="flex items-center gap-2">
+                      <span className="font-mono font-black text-xl text-ink dark:text-cream">
+                        /{sec.num}
+                      </span>
+                      <span
+                        className="font-mono text-xs font-bold px-2 py-0.5 border border-ink"
+                        style={{
+                          backgroundColor: sec.color,
+                          color: sec.color === "#FFF6E5" ? "#1A1A1A" : sec.color === "#FF4336" ? "#FFFFFF" : sec.color === "#179A94" ? "#FFFFFF" : "#1A1A1A",
+                        }}
+                      >
+                        {sec.badge}
+                      </span>
+                    </div>
 
-          {/* The Three Projects Cards */}
-          <div className="space-y-10">
-            {/* Project 1: Orange Taxi (Flagship) */}
-            <ProjectCard
-              slug="orange-taxi"
-              number="01"
-              title="Orange Taxi: Full-Stack Electric Ride-Hailing Platform"
-              tagline="Pre-launch premium 100% electric cab service in Delhi NCR using Mahindra BE.6 electric SUVs for airport transfers and corporate accounts."
-              category="Web / Production PWA / Flagship"
-              stack={["React", "TypeScript", "TanStack Start", "Supabase", "PostgreSQL", "Tailwind CSS", "PWA"]}
-              highlight="Built real-time dispatch engine on Supabase Realtime (ride requests, live driver coordinates, in-ride chat) + in-app UPI dynamic QR driver handover flow."
-              liveUrl="https://orange-taxi.com"
-              accentColor="sunny"
-              initialRotation={-0.5}
-              doodle={<TaxiDoodle className="w-36 h-24" />}
-            />
+                    <div className="opacity-80 group-hover:scale-110 transition-transform">
+                      {sec.icon}
+                    </div>
+                  </div>
 
-            {/* Project 2: Autonomous Search and Rescue Robot */}
-            <ProjectCard
-              slug="autonomous-rescue-robot"
-              number="02"
-              title="Autonomous Search and Rescue Robot"
-              tagline="Hazardous terrain exploration rover engineered for independent navigation and survivor telemetry in GPS-denied disaster environments."
-              category="IoT / Embedded / Robotics"
-              stack={["C/C++", "Microcontrollers", "LiDAR/Sensors", "Path Planning", "Telemetry", "Autonomous Logic"]}
-              highlight="Obstacle detection sensor fusion, real-time hazardous telemetry transmission, path planning in GPS-denied zones, and fail-safe decision logic."
-              repoUrl="https://github.com/akshat0709/AutonomousSearchAndRescueRobot"
-              accentColor="teal"
-              initialRotation={0.5}
-              doodle={<RobotDoodle className="w-28 h-28" />}
-            />
+                  <h3 className="font-display font-extrabold text-2xl text-ink dark:text-cream tracking-tight mb-1">
+                    <Link
+                      href={sec.href}
+                      className="hover:underline decoration-2 decoration-tomato"
+                      data-cursor-label="open"
+                    >
+                      {sec.title}
+                    </Link>
+                  </h3>
 
-            {/* Project 3: Animal Detection in Locomotive Tracks */}
-            <ProjectCard
-              slug="animal-detection"
-              number="03"
-              title="Animal Detection in Locomotive Tracks"
-              tagline="Real-time computer vision system processing live locomotive cab video streams to detect track wildlife and prevent collisions."
-              category="Python / Computer Vision / AI-ML"
-              stack={["Python", "Computer Vision", "Deep Learning", "Real-Time Alerts", "Video Pipeline"]}
-              highlight="Low-latency inference on video feeds, real-time alert dispatch to train operators, and emergency safety protocol triggers."
-              repoUrl="https://github.com/akshat0709/AnimalDetection"
-              accentColor="tomato"
-              initialRotation={-0.5}
-              doodle={<TrainDoodle className="w-36 h-24" />}
-            />
-          </div>
-
-          {/* Early Work line */}
-          <div className="mt-10">
-            <EarlyWorkSection />
-          </div>
-        </div>
-      </section>
-
-      {/* ===================== EXPERIENCE ===================== */}
-      <section id="experience" className="py-16 sm:py-24 border-t-2 border-ink dark:border-cream">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
-            <div>
-              <span className="font-mono text-xs font-bold px-2 py-0.5 bg-sunny text-ink border border-ink inline-block mb-3">
-                Industry Work
-              </span>
-              <h2 className="font-display font-extrabold text-3xl sm:text-5xl text-ink dark:text-cream tracking-tight">
-                Work Experience.
-              </h2>
-            </div>
-            <Link
-              href="/experience"
-              className="font-mono text-xs font-bold text-ink dark:text-cream hover:text-tomato underline self-start md:self-end"
-            >
-              View dedicated experience page →
-            </Link>
-          </div>
-
-          <ExperienceSection />
-        </div>
-      </section>
-
-      {/* ===================== SKILLS INDEX ===================== */}
-      <section id="skills" className="py-16 sm:py-24 border-t-2 border-ink dark:border-cream">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
-            <div>
-              <span className="font-mono text-xs font-bold px-2 py-0.5 bg-teal text-white border border-ink inline-block mb-3">
-                Capabilities
-              </span>
-              <h2 className="font-display font-extrabold text-3xl sm:text-5xl text-ink dark:text-cream tracking-tight">
-                Technical Index.
-              </h2>
-            </div>
-            <Link
-              href="/skills"
-              className="font-mono text-xs font-bold text-ink dark:text-cream hover:text-teal underline self-start md:self-end"
-            >
-              View dedicated skills page →
-            </Link>
-          </div>
-
-          <p className="font-body text-base text-ink/80 dark:text-cream/80 max-w-2xl mb-8">
-            Grouped cleanly by engineering layer. No fictional percentage progress bars—just tools and languages I write real software with.
-          </p>
-
-          <SkillsIndex />
-        </div>
-      </section>
-
-      {/* ===================== ABOUT & STICKER PILE ===================== */}
-      <section id="about" className="py-16 sm:py-24 border-t-2 border-ink dark:border-cream">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
-            <div>
-              <span className="font-mono text-xs font-bold px-2 py-0.5 bg-sunny text-ink border border-ink inline-block mb-3">
-                Background &amp; Philosophy
-              </span>
-              <h2 className="font-display font-extrabold text-3xl sm:text-5xl text-ink dark:text-cream tracking-tight">
-                About Akshat.
-              </h2>
-            </div>
-            <Link
-              href="/about"
-              className="font-mono text-xs font-bold text-ink dark:text-cream hover:text-sunny underline self-start md:self-end"
-            >
-              View dedicated about page →
-            </Link>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-            {/* Bio Column */}
-            <div className="lg:col-span-6 space-y-5">
-              <div className="border-2 border-ink dark:border-cream bg-white dark:bg-[#1E1E1E] p-6 sm:p-8 shadow-hard dark:shadow-hard-dark">
-                <h3 className="font-display font-extrabold text-2xl text-ink dark:text-cream mb-4">
-                  Engineering with real constraints.
-                </h3>
-                <div className="space-y-4 font-body text-base text-ink/80 dark:text-cream/80 leading-relaxed">
-                  <p>
-                    I am an undergraduate in Computer Science (specializing in <strong>IoT, Cybersecurity &amp; Blockchain</strong>) at BMS College of Engineering, Bengaluru (class of 2028).
+                  <p className="font-mono text-xs font-bold text-tomato mb-3">
+                    {sec.subtitle}
                   </p>
-                  <p>
-                    I prefer building systems that touch the physical world or serve actual users: real-time dispatch systems for electric cabs, autonomous rovers navigating without GPS, and low-latency computer vision on railway lines.
-                  </p>
-                  <p>
-                    Academic track record: <strong>CGPA 8.97</strong> through the 4th semester, and 94.8% in CBSE Class X. I care about speed, clean architecture, and verifiable results over decorative fluff.
+
+                  <p className="font-body text-sm text-ink/80 dark:text-cream/80 leading-relaxed mb-6">
+                    {sec.description}
                   </p>
                 </div>
 
-                <div className="border-t-2 border-ink/20 dark:border-cream/20 mt-6 pt-4 flex flex-wrap gap-4 font-mono text-xs font-bold">
-                  <div>
-                    <span className="text-ink/70 dark:text-cream/70 block">Education</span>
-                    <span>BMSCE Bengaluru (2024–2028)</span>
-                  </div>
-                  <div>
-                    <span className="text-ink/70 dark:text-cream/70 block">Specialization</span>
-                    <span>IoT, Cyber &amp; Blockchain</span>
-                  </div>
+                <div className="pt-4 border-t border-ink/10 dark:border-cream/10 flex items-center justify-between">
+                  <Link
+                    href={sec.href}
+                    className="font-mono text-xs font-bold text-ink dark:text-cream flex items-center gap-2 group-hover:text-tomato transition-colors"
+                    data-cursor-label="explore"
+                  >
+                    <span>{sec.cta}</span>
+                    <span className="group-hover:translate-x-1 transition-transform">→</span>
+                  </Link>
+
+                  <span className="font-mono text-xs text-ink/60 dark:text-cream/60">
+                    Dedicated Page
+                  </span>
                 </div>
-              </div>
-            </div>
-
-            {/* Signature Interactive Sticker Pile Column */}
-            <div className="lg:col-span-6">
-              <StickerPile />
-            </div>
+              </motion.div>
+            ))}
           </div>
-        </div>
-      </section>
-
-      {/* ===================== RECOGNITION & CERTIFICATIONS ===================== */}
-      <section id="recognition" className="py-16 sm:py-24 border-t-2 border-ink dark:border-cream">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
-            <div>
-              <span className="font-mono text-xs font-bold px-2 py-0.5 bg-tomato text-white border border-ink inline-block mb-3">
-                Validation
-              </span>
-              <h2 className="font-display font-extrabold text-3xl sm:text-5xl text-ink dark:text-cream tracking-tight">
-                Recognition.
-              </h2>
-            </div>
-          </div>
-
-          <RecognitionSection />
         </div>
       </section>
 
