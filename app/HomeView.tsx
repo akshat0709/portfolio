@@ -10,8 +10,10 @@ import { WheelchairDoodle } from "@/components/doodles/WheelchairDoodle";
 import { ChaiDoodle } from "@/components/doodles/ChaiDoodle";
 import { ContactSection } from "@/components/ui/Footer";
 import { MagneticButton } from "@/components/ui/MagneticButton";
+import { BuiltInPublicSection } from "@/components/ui/BuiltInPublicSection";
 import { projects } from "@/data/projects";
 import { siteConfig } from "@/lib/site";
+import type { GitHubRepo } from "@/lib/github";
 
 const springOvershoot = {
   type: "spring",
@@ -19,7 +21,11 @@ const springOvershoot = {
   damping: 25,
 };
 
-export function HomeView() {
+interface HomeViewProps {
+  repos?: GitHubRepo[];
+}
+
+export function HomeView({ repos = [] }: HomeViewProps) {
   const sections = [
     {
       num: "01",
@@ -421,6 +427,9 @@ export function HomeView() {
           </div>
         </div>
       </section>
+
+      {/* ===================== BUILT IN PUBLIC ===================== */}
+      <BuiltInPublicSection repos={repos} />
 
       {/* ===================== CONTACT & FOOTER ===================== */}
       <ContactSection />

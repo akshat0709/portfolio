@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { HomeView } from "./HomeView";
 import { siteConfig } from "@/lib/site";
+import { getGitHubRepos } from "@/lib/github";
 
 export const metadata: Metadata = {
   title: siteConfig.title,
@@ -17,6 +18,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function Page() {
-  return <HomeView />;
+export default async function Page() {
+  const repos = await getGitHubRepos();
+  return <HomeView repos={repos} />;
 }
