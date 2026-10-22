@@ -3,12 +3,16 @@ import "./globals.css";
 import { Navbar } from "@/components/ui/Navbar";
 import { Footer } from "@/components/ui/Footer";
 import { CursorBlob } from "@/components/ui/CursorBlob";
+import { siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Akshat Gupta | Full-Stack Developer & CS Undergrad",
-  description:
-    "Portfolio of Akshat Gupta. CS undergrad at BMSCE Bengaluru (IoT, Cybersecurity & Blockchain) who builds real systems—from the live Orange Taxi EV platform to an autonomous rescue robot.",
-  authors: [{ name: "Akshat Gupta" }],
+  metadataBase: new URL(siteConfig.url),
+  title: {
+    default: siteConfig.title,
+    template: `%s | ${siteConfig.name}`,
+  },
+  description: siteConfig.description,
+  authors: [{ name: siteConfig.name, url: siteConfig.url }],
   keywords: [
     "Akshat Gupta",
     "Full-Stack Developer",
@@ -20,19 +24,21 @@ export const metadata: Metadata = {
     "Computer Vision",
     "Bengaluru",
   ],
-  metadataBase: new URL("https://akshat-gupta.dev"),
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
-    title: "Akshat Gupta | Full-Stack Developer & CS Undergrad",
-    description:
-      "Full-stack developer and CS undergrad who builds real systems, from a live ride-hailing platform to an autonomous rescue robot.",
+    title: siteConfig.title,
+    description: siteConfig.description,
+    url: siteConfig.url,
+    siteName: siteConfig.name,
     type: "website",
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Akshat Gupta | Full-Stack Developer & CS Undergrad",
-    description:
-      "Full-stack developer and CS undergrad who builds real systems, from a live ride-hailing platform to an autonomous rescue robot.",
+    title: siteConfig.title,
+    description: siteConfig.description,
   },
 };
 
@@ -45,20 +51,17 @@ export default function RootLayout({
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Person",
-    name: "Akshat Gupta",
+    name: siteConfig.name,
     jobTitle: "Full-Stack Developer",
     alumniOf: {
       "@type": "EducationalOrganization",
       name: "BMS College of Engineering",
       location: "Bengaluru, India",
     },
-    email: "mailto:akshat070906@gmail.com",
-    telephone: "+91-7360911966",
-    url: "https://github.com/akshat0709",
-    sameAs: [
-      "https://github.com/akshat0709",
-      "https://linkedin.com/in/akshat-gupta-957084317",
-    ],
+    email: `mailto:${siteConfig.email}`,
+    telephone: siteConfig.phone,
+    url: siteConfig.url,
+    sameAs: [siteConfig.github, siteConfig.linkedin],
     knowsAbout: [
       "Full-Stack Web Development",
       "React",
