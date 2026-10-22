@@ -11,6 +11,7 @@ import { ChaiDoodle } from "@/components/doodles/ChaiDoodle";
 import { ContactSection } from "@/components/ui/Footer";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { projects } from "@/data/projects";
+import { siteConfig } from "@/lib/site";
 
 const springOvershoot = {
   type: "spring",
@@ -240,6 +241,90 @@ export function HomeView() {
             >
               Get In Touch →
             </MagneticButton>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ===================== 60-SECOND RECRUITER VERSION ===================== */}
+      <section className="px-4 sm:px-6 pb-12 sm:pb-16 -mt-4">
+        <div className="max-w-5xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ type: "spring", stiffness: 350, damping: 25 }}
+            className="border-2 border-ink dark:border-cream bg-white dark:bg-[#1E1E1E] shadow-hard dark:shadow-hard-dark p-6 sm:p-7 relative"
+          >
+            {/* Card Header Tag */}
+            <div className="flex flex-wrap items-center justify-between gap-2 pb-4 border-b-2 border-ink/15 dark:border-cream/15 mb-4">
+              <div className="flex items-center gap-2">
+                <span className="font-mono text-xs font-black px-2.5 py-0.5 bg-sunny text-ink border border-ink shadow-hard-sm uppercase tracking-wider">
+                  ⚡ 60-Second Version
+                </span>
+                <span className="font-mono text-xs text-ink/70 dark:text-cream/70 hidden sm:inline">
+                  for recruiters &amp; engineering managers
+                </span>
+              </div>
+              <span className="font-mono text-xs font-bold text-teal dark:text-teal">
+                Quick Glance Summary
+              </span>
+            </div>
+
+            {/* Who I Am */}
+            <p className="font-display font-bold text-lg sm:text-xl text-ink dark:text-cream leading-snug mb-5">
+              Full-stack developer and CS undergrad (IoT, Cybersecurity &amp; Blockchain) who builds real systems—from a live ride-hailing platform to an autonomous rescue robot.
+            </p>
+
+            {/* Three Project Chips */}
+            <div className="mb-5">
+              <p className="font-mono text-xs font-bold uppercase tracking-wider text-ink/60 dark:text-cream/60 mb-2.5">
+                Featured Case Studies:
+              </p>
+              <div className="flex flex-wrap gap-2.5">
+                {projects.slice(0, 3).map((project) => (
+                  <Link
+                    key={project.slug}
+                    href={`/projects/${project.slug}`}
+                    className="inline-flex items-center gap-2 px-3 py-1.5 border-2 border-ink dark:border-cream bg-cream dark:bg-[#252525] hover:bg-sunny dark:hover:bg-sunny dark:hover:text-ink text-ink dark:text-cream font-mono text-xs font-bold transition-all shadow-hard-sm group"
+                    data-cursor-label="view"
+                  >
+                    <span className="w-2 h-2 rounded-full bg-tomato flex-shrink-0" />
+                    <span>{project.title}</span>
+                    <span className="text-ink/50 dark:text-cream/50 group-hover:translate-x-0.5 transition-transform">→</span>
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            {/* Bottom Row: Actions & Education */}
+            <div className="pt-4 border-t-2 border-ink/15 dark:border-cream/15 flex flex-col md:flex-row md:items-center justify-between gap-4">
+              {/* Education Line */}
+              <div className="flex items-center gap-2 font-mono text-xs text-ink/80 dark:text-cream/80">
+                <span className="font-bold text-ink dark:text-cream">Education:</span>
+                <span>BMSCE, B.E. CS (IoT, Cybersecurity &amp; Blockchain), CGPA 8.97 (till 4th sem)</span>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex flex-wrap items-center gap-2.5">
+                <a
+                  href="/Akshat_Gupta_Resume.pdf"
+                  download
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-sunny hover:bg-sunny/90 text-ink border-2 border-ink shadow-hard-sm font-mono text-xs font-bold transition-all"
+                  data-cursor-label="resume"
+                >
+                  <span>Download Resume (PDF)</span>
+                  <span className="text-tomato font-black">↓</span>
+                </a>
+                <a
+                  href={`mailto:${siteConfig.email}?subject=Opportunity%20Discussion`}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-[#252525] hover:bg-cream dark:hover:bg-ink text-ink dark:text-cream border-2 border-ink dark:border-cream shadow-hard-sm font-mono text-xs font-bold transition-all"
+                  data-cursor-label="email"
+                >
+                  <span>Email Me</span>
+                  <span>→</span>
+                </a>
+              </div>
+            </div>
           </motion.div>
         </div>
       </section>
