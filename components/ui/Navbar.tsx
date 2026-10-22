@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, useScroll, useMotionValueEvent, AnimatePresence, useReducedMotion } from "framer-motion";
 import { siteConfig } from "@/lib/site";
+import { CommandPalette } from "@/components/ui/CommandPalette";
 
 export function Navbar() {
   const pathname = usePathname();
@@ -14,6 +15,19 @@ export function Navbar() {
   const [lastY, setLastY] = useState(0);
   const [isDark, setIsDark] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [paletteOpen, setPaletteOpen] = useState(false);
+
+  // Global shortcut: Cmd/Ctrl + K to toggle command palette
+  useEffect(() => {
+    const handleGlobalKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && (e.key === "k" || e.key === "K")) {
+        e.preventDefault();
+        setPaletteOpen((prev) => !prev);
+      }
+    };
+    window.addEventListener("keydown", handleGlobalKeyDown);
+    return () => window.removeEventListener("keydown", handleGlobalKeyDown);
+  }, []);
 
   useEffect(() => {
     const stored = localStorage.getItem("portfolio-theme");
@@ -150,6 +164,19 @@ export function Navbar() {
             >
               {isDark ? "☀" : "☾"}
             </button>
+
+            {/* ⌘K Command Palette Button (hidden on touch devices) */}
+            <button
+              type="button"
+              onClick={() => setPaletteOpen(true)}
+              aria-label="Open command palette (⌘K)"
+              className="ml-1 px-2 py-1 border-2 border-ink dark:border-cream bg-white dark:bg-ink text-ink dark:text-cream flex items-center gap-1 font-mono text-xs font-bold shadow-hard-sm dark:shadow-[2px_2px_0px_#FFF6E5] hover:bg-sunny dark:hover:bg-sunny dark:hover:text-ink transition-colors [@media(hover:none)]:hidden"
+              data-cursor-label="search"
+              title="Open command palette (⌘K / Ctrl+K)"
+            >
+              <span className="text-[10px] text-tomato font-black">⌘</span>
+              <span>K</span>
+            </button>
           </nav>
 
           {/* Mobile Actions: Dark Mode & Hamburger Menu Toggle */}
@@ -231,6 +258,19 @@ export function Navbar() {
                   <span>Download Resume (PDF)</span>
                   <span className="text-tomato font-black">↓</span>
                 </a>
+
+                {/* Mobile Command Palette Launcher */}
+                <button
+                  type="button"
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    setPaletteOpen(true);
+                  }}
+                  className="px-3 py-2 border-2 border-ink dark:border-cream bg-white dark:bg-ink text-ink dark:text-cream flex items-center justify-between font-mono text-xs font-bold hover:bg-sunny"
+                >
+                  <span>Search &amp; Commands</span>
+                  <span className="px-1.5 py-0.5 bg-sunny text-ink border border-ink text-[10px]">⌘K</span>
+                </button>
               </div>
             </motion.div>
           )}
@@ -247,6 +287,14 @@ export function Navbar() {
           />
         </div>
       </div>
+
+      {/* Global Command Palette */}
+      <CommandPalette
+        isOpen={paletteOpen}
+        onClose={() => setPaletteOpen(false)}
+        onToggleTheme={toggleDarkMode}
+        isDark={isDark}
+      />
     </motion.header>
   );
 }
