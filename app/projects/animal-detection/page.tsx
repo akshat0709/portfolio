@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { AnimalDetectionView } from "./AnimalDetectionView";
 import { siteConfig } from "@/lib/site";
+import { getProjectScreenshots } from "@/lib/screenshots";
 
 export const metadata: Metadata = {
   title: "Animal Detection in Locomotive Tracks | Case Study",
@@ -20,5 +21,7 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <AnimalDetectionView />;
+  const screenshots = getProjectScreenshots("animal-detection");
+
+  return <AnimalDetectionView screenshots={screenshots} />;
 }

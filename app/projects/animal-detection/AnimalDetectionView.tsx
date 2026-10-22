@@ -4,8 +4,16 @@ import React from "react";
 import Link from "next/link";
 import { TrainDoodle } from "@/components/doodles/TrainDoodle";
 import { MagneticButton } from "@/components/ui/MagneticButton";
+import { ArchitectureDiagram } from "@/components/ui/ArchitectureDiagram";
+import { ProjectGallery, type ProjectScreenshot } from "@/components/ui/ProjectGallery";
+import { projects } from "@/data/projects";
 
-export function AnimalDetectionView() {
+interface AnimalDetectionViewProps {
+  screenshots?: ProjectScreenshot[];
+}
+
+export function AnimalDetectionView({ screenshots = [] }: AnimalDetectionViewProps) {
+  const projectData = projects.find((p) => p.slug === "animal-detection");
   return (
     <main id="main-content" className="min-h-screen pt-28 pb-20 selection:bg-sunny">
       <article className="max-w-4xl mx-auto px-4 sm:px-6">
@@ -115,16 +123,6 @@ export function AnimalDetectionView() {
           <p>
             The project automates continuous forward-corridor vision using a deep learning pipeline optimized for high-frame-rate detection, filtering out false positives from trackside brush, and immediately escalating confirmed hazards to the train pilot.
           </p>
-
-          {/* Placeholder 1 */}
-          <div className="border-2 border-dashed border-ink dark:border-cream bg-cream dark:bg-[#1C1C1C] p-8 text-center my-8">
-            <span className="font-mono text-xs font-bold px-2 py-1 bg-tomato text-white inline-block mb-2">
-              [SCREENSHOT: Model Inference &amp; Track Bounding Boxes]
-            </span>
-            <p className="font-mono text-xs text-ink/70 dark:text-cream/70 max-w-md mx-auto">
-              Replace with screenshot of the detection video stream displaying confidence scores and bounding boxes on detected wildlife along railway tracks.
-            </p>
-          </div>
         </section>
 
         {/* Content Section 2: Pipeline & Low Latency */}
@@ -153,16 +151,44 @@ export function AnimalDetectionView() {
               </p>
             </div>
           </div>
+        </section>
 
-          {/* Placeholder 2 */}
-          <div className="border-2 border-dashed border-ink dark:border-cream bg-cream dark:bg-[#1C1C1C] p-8 text-center my-8">
-            <span className="font-mono text-xs font-bold px-2 py-1 bg-sunny text-ink border border-ink inline-block mb-2">
-              [PHOTO: Field Testing Setup or Simulation]
+        {/* System Architecture Section */}
+        <section className="mb-14">
+          <div className="flex items-center gap-3 mb-4">
+            <span className="font-mono text-xs font-bold px-2 py-0.5 bg-tomato text-white border border-ink">
+              System Topology
             </span>
-            <p className="font-mono text-xs text-ink/70 dark:text-cream/70 max-w-md mx-auto">
-              Replace with photograph or visual diagram of camera mount calibration and real-time processing feed setup.
-            </p>
+            <h3 className="font-display font-black text-2xl text-ink dark:text-cream">
+              Architecture
+            </h3>
           </div>
+          <p className="font-body text-sm text-ink/80 dark:text-cream/80 mb-2 leading-relaxed">
+            Real-time inference pipeline connecting front-facing locomotive optical sensor feeds, temporal frame buffers, on-device edge ML detection models, and audible pilot alarms.
+          </p>
+          <ArchitectureDiagram
+            title="Locomotive Track Animal Vision Architecture"
+            subtitle="Video Ingestion → Edge ML Inference → Pilot Beacon Alarm"
+            isPlaceholder={true}
+            placeholderText="[DIAGRAM_PLACEHOLDER]"
+          />
+        </section>
+
+        {/* Screenshots Section */}
+        <section className="mb-14">
+          <div className="flex items-center gap-3 mb-4">
+            <span className="font-mono text-xs font-bold px-2 py-0.5 bg-sunny text-ink border border-ink">
+              Visual Captures
+            </span>
+            <h3 className="font-display font-black text-2xl text-ink dark:text-cream">
+              Screenshots
+            </h3>
+          </div>
+          <ProjectGallery
+            slug="animal-detection"
+            projectTitle="Animal Detection in Locomotive Tracks"
+            screenshots={screenshots}
+          />
         </section>
 
         {/* Content Section 3: Alert System */}
@@ -193,7 +219,22 @@ export function AnimalDetectionView() {
           </div>
         </section>
 
-        {/* Bottom Navigation */}
+        {/* What I'd do differently */}
+        <section className="border-2 border-ink dark:border-cream bg-white dark:bg-[#1E1E1E] p-6 sm:p-8 shadow-hard mb-12">
+          <div className="flex items-center gap-2 mb-3">
+            <span className="font-mono text-xs font-black px-2 py-0.5 bg-sunny text-ink border border-ink shadow-hard-sm uppercase">
+              Retrospective
+            </span>
+            <h3 className="font-display font-extrabold text-xl text-ink dark:text-cream">
+              What I&apos;d do differently
+            </h3>
+          </div>
+          <p className="font-mono text-xs sm:text-sm text-ink/80 dark:text-cream/80 leading-relaxed bg-cream/50 dark:bg-[#252525] p-4 border border-ink/20">
+            {projectData?.whatIdDoDifferently}
+          </p>
+        </section>
+
+        {/* Bottom Sibling Navigation */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 border-t-2 border-ink dark:border-cream pt-8">
           <Link
             href="/projects/autonomous-rescue-robot"
@@ -202,10 +243,10 @@ export function AnimalDetectionView() {
             ← Previous: Autonomous Rescue Robot
           </Link>
           <Link
-            href="/projects"
+            href="/projects/orange-taxi"
             className="font-mono text-sm font-bold text-ink dark:text-cream hover:text-tomato flex items-center gap-2 group"
           >
-            <span>Back to All Projects</span>
+            <span>Next Project: Orange Taxi PWA</span>
             <span className="group-hover:translate-x-1 transition-transform">→</span>
           </Link>
         </div>

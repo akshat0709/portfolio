@@ -2,19 +2,18 @@
 
 import React from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { TaxiDoodle } from "@/components/doodles/TaxiDoodle";
 import { MagneticButton } from "@/components/ui/MagneticButton";
+import { ArchitectureDiagram } from "@/components/ui/ArchitectureDiagram";
+import { ProjectGallery, type ProjectScreenshot } from "@/components/ui/ProjectGallery";
+import { projects } from "@/data/projects";
 
 interface OrangeTaxiViewProps {
-  screenshots?: {
-    rider?: boolean;
-    dispatch?: boolean;
-    qr?: boolean;
-  };
+  screenshots?: ProjectScreenshot[];
 }
 
-export function OrangeTaxiView({ screenshots }: OrangeTaxiViewProps) {
+export function OrangeTaxiView({ screenshots = [] }: OrangeTaxiViewProps) {
+  const projectData = projects.find((p) => p.slug === "orange-taxi");
   return (
     <main id="main-content" className="min-h-screen pt-28 pb-20 selection:bg-sunny">
       <article className="max-w-4xl mx-auto px-4 sm:px-6">
@@ -128,28 +127,6 @@ export function OrangeTaxiView({ screenshots }: OrangeTaxiViewProps) {
           <p>
             To achieve immediate accessibility on any smartphone, I designed and built the complete rider and driver application stack as an installable Progressive Web App (PWA).
           </p>
-
-          {/* Screenshot 1 */}
-          {screenshots?.rider ? (
-            <div className="border-2 border-ink dark:border-cream shadow-hard overflow-hidden my-8 bg-cream">
-              <Image
-                src="/screenshots/orange-taxi-rider.png"
-                alt="Orange Taxi Rider PWA Booking Flow"
-                width={1200}
-                height={750}
-                className="w-full h-auto"
-              />
-            </div>
-          ) : (
-            <div className="border-2 border-dashed border-ink dark:border-cream bg-cream dark:bg-[#1C1C1C] p-8 text-center my-8">
-              <span className="font-mono text-xs font-bold px-2 py-1 bg-tomato text-white inline-block mb-2">
-                [SCREENSHOT: Rider PWA Booking Flow]
-              </span>
-              <p className="font-mono text-xs text-ink/70 dark:text-cream/70 max-w-md mx-auto">
-                Replace with screenshot of the mobile PWA booking screen, airport transfer destination selector, and EV ride tiers.
-              </p>
-            </div>
-          )}
         </section>
 
         {/* Content Section 2: Realtime Dispatch Engine */}
@@ -176,28 +153,6 @@ export function OrangeTaxiView({ screenshots }: OrangeTaxiViewProps) {
               </li>
             </ul>
           </div>
-
-          {/* Screenshot 2 */}
-          {screenshots?.dispatch ? (
-            <div className="border-2 border-ink dark:border-cream shadow-hard overflow-hidden my-8 bg-cream">
-              <Image
-                src="/screenshots/orange-taxi-dispatch.png"
-                alt="Orange Taxi Dispatch Dashboard & Live Coordinate Map"
-                width={1200}
-                height={750}
-                className="w-full h-auto"
-              />
-            </div>
-          ) : (
-            <div className="border-2 border-dashed border-ink dark:border-cream bg-cream dark:bg-[#1C1C1C] p-8 text-center my-8">
-              <span className="font-mono text-xs font-bold px-2 py-1 bg-sunny text-ink border border-ink inline-block mb-2">
-                [SCREENSHOT: Dispatch Dashboard &amp; Live Coordinate Map]
-              </span>
-              <p className="font-mono text-xs text-ink/70 dark:text-cream/70 max-w-md mx-auto">
-                Replace with screenshot of the active dispatch view showing driver status markers, assigned Mahindra BE.6 vehicles, and telemetry.
-              </p>
-            </div>
-          )}
         </section>
 
         {/* Content Section 3: In-App UPI & Dynamic QR */}
@@ -226,28 +181,107 @@ export function OrangeTaxiView({ screenshots }: OrangeTaxiViewProps) {
               </p>
             </div>
           </div>
+        </section>
 
-          {/* Screenshot 3 */}
-          {screenshots?.qr ? (
-            <div className="border-2 border-ink dark:border-cream shadow-hard overflow-hidden my-8 bg-cream">
-              <Image
-                src="/screenshots/orange-taxi-qr.png"
-                alt="Orange Taxi Dynamic UPI QR Driver Handover Screen"
-                width={1200}
-                height={750}
-                className="w-full h-auto"
-              />
-            </div>
-          ) : (
-            <div className="border-2 border-dashed border-ink dark:border-cream bg-cream dark:bg-[#1C1C1C] p-8 text-center my-8">
-              <span className="font-mono text-xs font-bold px-2 py-1 bg-teal text-white inline-block mb-2">
-                [SCREENSHOT: Dynamic UPI QR Driver Handover Screen]
-              </span>
-              <p className="font-mono text-xs text-ink/70 dark:text-cream/70 max-w-md mx-auto">
-                Replace with screenshot of the dynamic QR modal with transaction verification badge.
-              </p>
-            </div>
-          )}
+        {/* System Architecture Section */}
+        <section className="mb-14">
+          <div className="flex items-center gap-3 mb-4">
+            <span className="font-mono text-xs font-bold px-2 py-0.5 bg-sunny text-ink border border-ink">
+              System Topology
+            </span>
+            <h3 className="font-display font-black text-2xl text-ink dark:text-cream">
+              Architecture
+            </h3>
+          </div>
+          <p className="font-body text-sm text-ink/80 dark:text-cream/80 mb-2 leading-relaxed">
+            Multi-tier distributed PWA connecting rider interfaces, driver devices, and administrative consoles through a unified Supabase realtime event bus and dynamic payment rails.
+          </p>
+          <ArchitectureDiagram
+            title="Orange Taxi Platform Architecture"
+            subtitle="Rider / Driver / Admin → Supabase → UPI QR Rails"
+            nodes={[
+              {
+                id: "rider",
+                label: "Rider PWA",
+                sublabel: "Booking · Tracking · In-Ride Chat",
+                badge: "Client",
+                x: 30,
+                y: 35,
+                width: 210,
+                height: 75,
+                color: "#FFF6E5",
+              },
+              {
+                id: "driver",
+                label: "Driver PWA",
+                sublabel: "Ride Dispatch · Live GPS Telemetry",
+                badge: "Client",
+                x: 30,
+                y: 140,
+                width: 210,
+                height: 75,
+                color: "#FFD13B",
+              },
+              {
+                id: "admin",
+                label: "Admin Portal",
+                sublabel: "Fleet Oversight · Verification",
+                badge: "Internal",
+                x: 30,
+                y: 245,
+                width: 210,
+                height: 75,
+                color: "#FFF6E5",
+              },
+              {
+                id: "supabase",
+                label: "Supabase Core Engine",
+                sublabel: "PostgreSQL · Realtime WebSockets · RLS",
+                badge: "Backend / Database",
+                x: 310,
+                y: 115,
+                width: 230,
+                height: 120,
+                color: "#179A94",
+                textColor: "#FFFFFF",
+              },
+              {
+                id: "upi",
+                label: "UPI QR Payment Flow",
+                sublabel: "Dynamic In-App QR · Cash Handover",
+                badge: "Payment Rail",
+                x: 600,
+                y: 135,
+                width: 205,
+                height: 80,
+                color: "#FF4336",
+                textColor: "#FFFFFF",
+              },
+            ]}
+            edges={[
+              { from: "rider", to: "supabase", label: "Ride Requests" },
+              { from: "driver", to: "supabase", label: "GPS Coordinates" },
+              { from: "admin", to: "supabase", label: "Fleet Metrics" },
+              { from: "supabase", to: "upi", label: "Dynamic QR Gen" },
+            ]}
+          />
+        </section>
+
+        {/* Screenshots Section */}
+        <section className="mb-14">
+          <div className="flex items-center gap-3 mb-4">
+            <span className="font-mono text-xs font-bold px-2 py-0.5 bg-teal text-white border border-ink">
+              Visual Captures
+            </span>
+            <h3 className="font-display font-black text-2xl text-ink dark:text-cream">
+              Screenshots
+            </h3>
+          </div>
+          <ProjectGallery
+            slug="orange-taxi"
+            projectTitle="Orange Taxi"
+            screenshots={screenshots}
+          />
         </section>
 
         {/* Technical Stack Index */}
@@ -269,6 +303,21 @@ export function OrangeTaxiView({ screenshots }: OrangeTaxiViewProps) {
               </p>
             </div>
           </div>
+        </section>
+
+        {/* What I'd do differently */}
+        <section className="border-2 border-ink dark:border-cream bg-white dark:bg-[#1E1E1E] p-6 sm:p-8 shadow-hard mb-12">
+          <div className="flex items-center gap-2 mb-3">
+            <span className="font-mono text-xs font-black px-2 py-0.5 bg-sunny text-ink border border-ink shadow-hard-sm uppercase">
+              Retrospective
+            </span>
+            <h3 className="font-display font-extrabold text-xl text-ink dark:text-cream">
+              What I&apos;d do differently
+            </h3>
+          </div>
+          <p className="font-mono text-xs sm:text-sm text-ink/80 dark:text-cream/80 leading-relaxed bg-cream/50 dark:bg-[#252525] p-4 border border-ink/20">
+            {projectData?.whatIdDoDifferently}
+          </p>
         </section>
 
         {/* Bottom Navigation */}

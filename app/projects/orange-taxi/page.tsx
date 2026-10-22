@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
-import fs from "fs";
-import path from "path";
 import { OrangeTaxiView } from "./OrangeTaxiView";
 import { siteConfig } from "@/lib/site";
+import { getProjectScreenshots } from "@/lib/screenshots";
 
 export const metadata: Metadata = {
   title: "Orange Taxi: Full-Stack Electric Ride-Hailing Platform",
@@ -22,12 +21,7 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  const screenshotsDir = path.join(process.cwd(), "public", "screenshots");
-  const screenshots = {
-    rider: fs.existsSync(path.join(screenshotsDir, "orange-taxi-rider.png")),
-    dispatch: fs.existsSync(path.join(screenshotsDir, "orange-taxi-dispatch.png")),
-    qr: fs.existsSync(path.join(screenshotsDir, "orange-taxi-qr.png")),
-  };
+  const screenshots = getProjectScreenshots("orange-taxi");
 
   return <OrangeTaxiView screenshots={screenshots} />;
 }

@@ -24,6 +24,7 @@ export interface Project {
   accentColor: "tomato" | "sunny" | "teal";
   doodle: "taxi" | "robot" | "train";
   initialRotation?: number;
+  whatIdDoDifferently: string;
 }
 
 export const projects: Project[] = [
@@ -49,6 +50,8 @@ export const projects: Project[] = [
     accentColor: "sunny",
     doodle: "taxi",
     initialRotation: 0,
+    whatIdDoDifferently:
+      "[WHAT_I_WOULD_DO_DIFFERENTLY_PLACEHOLDER: In future iterations, add optimistic UI updates for offline intermittent mobile networks, and decouple high-frequency driver coordinate streams using an edge message broker before writing to PostgreSQL.]",
   },
   {
     slug: "autonomous-rescue-robot",
@@ -71,6 +74,8 @@ export const projects: Project[] = [
     accentColor: "teal",
     doodle: "robot",
     initialRotation: 0,
+    whatIdDoDifferently:
+      "[WHAT_I_WOULD_DO_DIFFERENTLY_PLACEHOLDER: In future hardware revisions, incorporate hardware-accelerated SLAM coprocessors and low-frequency mesh telemetry for extended subterranean signal penetration.]",
   },
   {
     slug: "animal-detection",
@@ -92,5 +97,7 @@ export const projects: Project[] = [
     accentColor: "tomato",
     doodle: "train",
     initialRotation: 0,
+    whatIdDoDifferently:
+      "[WHAT_I_WOULD_DO_DIFFERENTLY_PLACEHOLDER: In future model versions, deploy quantized TensorRT INT8 models onto rugged edge accelerators to improve night-vision infrared detection fidelity in heavy fog.]",
   },
 ];

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { RescueRobotView } from "./RescueRobotView";
 import { siteConfig } from "@/lib/site";
+import { getProjectScreenshots } from "@/lib/screenshots";
 
 export const metadata: Metadata = {
   title: "Autonomous Search and Rescue Robot | Case Study",
@@ -20,5 +21,7 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <RescueRobotView />;
+  const screenshots = getProjectScreenshots("autonomous-rescue-robot");
+
+  return <RescueRobotView screenshots={screenshots} />;
 }
